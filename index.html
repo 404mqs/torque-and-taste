@@ -1,218 +1,261 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Torque & Taste — Private Automotive Experiences in Argentina</title>
+<title>Torque &amp; Taste — Private Automotive Experiences in Argentina</title>
 <meta name="description" content="Private curated automotive travel experiences in Argentina. Fangio, Berta, Pur Sang. From Buenos Aires.">
+<meta name="theme-color" content="#0a0a08">
+
+<!-- Social / SEO -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Torque & Taste — Private Automotive Experiences in Argentina">
+<meta property="og:description" content="Where Argentina's racing heritage meets its world-class gastronomy. Private, curated circuits from Buenos Aires.">
+<meta property="og:url" content="https://torqueandtaste.com/">
+<meta property="og:image" content="https://torqueandtaste.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon (inline, gold emblem) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a08'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c9a452' text-anchor='middle' font-weight='bold'%3ET%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Torque & Taste",
+  "description": "Private curated automotive travel experiences in Argentina.",
+  "url": "https://torqueandtaste.com",
+  "email": "lean@torqueandtaste.com",
+  "areaServed": "Argentina",
+  "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" }
+}
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --dark:#0a0a08;
   --dark2:#111110;
+  --dark3:#16160f;
   --gold:#c9a452;
   --gold2:#e8c87a;
   --ivory:#f5f0e8;
-  --muted:#888880;
+  --muted:#9b9b8f;          /* lifted for contrast */
+  --muted2:#787870;
   --border:rgba(201,164,82,0.2);
+  --border-soft:rgba(201,164,82,0.1);
 }
 html{scroll-behavior:smooth}
 body{background:var(--dark);color:var(--ivory);font-family:'Jost',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--dark)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+img{max-width:100%;display:block}
+
+/* subtle film grain for depth */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:200;transition:width .1s linear}
 
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:1.5rem 4rem;
-  transition:background 0.4s, padding 0.4s;
+  padding:1.5rem 4rem;transition:background .4s, padding .4s, border-color .4s;
+  border-bottom:0.5px solid transparent;
 }
-nav.scrolled{background:rgba(10,10,8,0.95);backdrop-filter:blur(10px);padding:1rem 4rem;border-bottom:0.5px solid var(--border)}
+nav.scrolled{background:rgba(10,10,8,0.85);backdrop-filter:blur(14px);padding:1rem 4rem;border-bottom:0.5px solid var(--border)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:5px;color:var(--gold);text-decoration:none}
 .nav-links{display:flex;gap:3rem}
-.nav-links a{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s}
+.nav-links a{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--gold)}
-.nav-cta{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;border:0.5px solid var(--gold);color:var(--gold);padding:0.6rem 1.6rem;text-decoration:none;transition:all 0.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;border:0.5px solid var(--gold);color:var(--gold);padding:0.6rem 1.6rem;text-decoration:none;transition:all .3s}
 .nav-cta:hover{background:var(--gold);color:var(--dark)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:26px;height:2px;background:var(--gold);transition:transform .3s, opacity .3s}
+body.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .nav-toggle span:nth-child(2){opacity:0}
+body.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:90;background:rgba(10,10,8,0.98);backdrop-filter:blur(10px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  opacity:0;visibility:hidden;transition:opacity .4s, visibility .4s;
+}
+body.menu-open .mobile-menu{opacity:1;visibility:visible}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:var(--ivory);text-decoration:none;transition:color .3s}
+.mobile-menu a:hover{color:var(--gold)}
 
 /* HERO */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden;
-  padding:0 4rem 4rem;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,164,82,0.06) 0%, transparent 70%), var(--dark);
-}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(201,164,82,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,164,82,0.04) 1px, transparent 1px);
-  background-size:80px 80px;
-}
-.hero-line{position:absolute;top:0;bottom:0;right:35%;width:0.5px;background:linear-gradient(to bottom, transparent, rgba(201,164,82,0.15), transparent)}
-.hero-content{position:relative;z-index:2;padding-top:6rem}
-.hero-eyebrow{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp 1s 0.3s forwards}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,11rem);line-height:0.9;letter-spacing:2px;margin-bottom:2rem;opacity:0;animation:fadeUp 1s 0.5s forwards}
-.hero-title em{color:var(--gold);font-style:normal;display:block}
-.hero-tagline{font-size:0.75rem;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:3rem;opacity:0;animation:fadeUp 1s 0.7s forwards}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 4rem 4rem}
+.hero-bg{position:absolute;inset:0;background:var(--dark)}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 72% 45%, rgba(201,164,82,0.10) 0%, transparent 70%);animation:glowDrift 14s ease-in-out infinite}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,164,82,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,164,82,0.04) 1px, transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 60% 50%, #000 30%, transparent 80%)}
+.hero-line{position:absolute;top:0;bottom:0;right:35%;width:0.5px;background:linear-gradient(to bottom, transparent, rgba(201,164,82,0.18), transparent)}
+.hero-content{position:relative;z-index:2;padding-top:6rem;max-width:1100px}
+.hero-eyebrow{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp 1s .3s forwards;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';width:50px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,11rem);line-height:0.88;letter-spacing:2px;margin-bottom:2rem;opacity:0;animation:fadeUp 1s .5s forwards}
+.hero-title em{font-style:normal;display:block;background:linear-gradient(100deg,var(--gold) 20%,var(--gold2) 50%,var(--gold) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
+.hero-tagline{font-size:0.78rem;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:3rem;opacity:0;animation:fadeUp 1s .7s forwards}
 .hero-tagline span{color:var(--gold);margin:0 0.5rem}
-.hero-cta{display:inline-block;background:var(--gold);color:var(--dark);padding:1rem 3rem;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:500;text-decoration:none;transition:all 0.3s;opacity:0;animation:fadeUp 1s 0.9s forwards}
-.hero-cta:hover{background:var(--gold2)}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;opacity:0;animation:fadeUp 1s .9s forwards}
+.btn-primary{display:inline-block;background:var(--gold);color:var(--dark);padding:1rem 3rem;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:500;text-decoration:none;transition:transform .3s, background .3s, box-shadow .3s}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-3px);box-shadow:0 12px 30px rgba(201,164,82,0.25)}
+.btn-ghost{display:inline-block;border:0.5px solid var(--border);color:var(--ivory);padding:1rem 2.4rem;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;text-decoration:none;transition:all .3s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 .hero-scroll{position:absolute;bottom:3rem;left:4rem;display:flex;flex-direction:column;align-items:center;gap:0.8rem;font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);z-index:2}
 .hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom, var(--gold), transparent);animation:scrollPulse 2s infinite}
 
 /* STRIP */
-.strip{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);
-  background:var(--dark2);
-}
-.strip-item{padding:2.5rem 4rem;border-right:0.5px solid var(--border);text-align:center}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);background:var(--dark2)}
+.strip-item{padding:2.6rem 4rem;border-right:0.5px solid var(--border);text-align:center;transition:background .3s}
 .strip-item:last-child{border-right:none}
+.strip-item:hover{background:var(--dark3)}
 .strip-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--gold);line-height:1}
 .strip-label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:0.5rem}
 
-/* ABOUT */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:8rem;padding:10rem 4rem;align-items:center}
-.section-eyebrow{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+/* generic section heads */
+.section-eyebrow{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.8rem}
+.section-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);display:inline-block}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;letter-spacing:1px;margin-bottom:2rem}
 .section-title em{color:var(--gold);font-style:normal}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:8rem;padding:10rem 4rem;align-items:center}
 .about-text p{color:var(--muted);font-size:0.95rem;line-height:1.9;margin-bottom:1.5rem}
+.about-text .lead{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--ivory);line-height:1.5;margin-bottom:2rem}
 .about-visual{display:flex;align-items:center;justify-content:center}
-.about-frame{
-  border:0.5px solid var(--border);padding:4rem;text-align:center;position:relative;
-  background:linear-gradient(135deg, rgba(201,164,82,0.03) 0%, transparent 60%);
-}
+.about-frame{border:0.5px solid var(--border);padding:4rem;text-align:center;position:relative;background:linear-gradient(135deg, rgba(201,164,82,0.04) 0%, transparent 60%)}
 .about-frame::before,.about-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--gold);border-style:solid}
 .about-frame::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
 .about-frame::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
 .about-big{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:8px;color:rgba(201,164,82,0.15);display:block;margin-bottom:1.5rem}
-.about-quote{font-size:0.9rem;font-style:italic;color:var(--ivory);line-height:1.8;max-width:280px}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--ivory);line-height:1.6;max-width:300px}
 
 /* EXPERIENCES */
 .experiences{padding:10rem 4rem;background:var(--dark2)}
-.exp-header{text-align:center;margin-bottom:6rem}
-.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:4rem}
-.exp-card{padding:4rem 3rem;border:0.5px solid var(--border);background:var(--dark);transition:border-color 0.3s}
-.exp-card:hover{border-color:var(--gold)}
-.exp-icon{font-size:2rem;margin-bottom:2rem}
+.exp-header{text-align:center;margin-bottom:5rem}
+.exp-header .section-eyebrow{justify-content:center}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.exp-card{padding:4rem 3rem;border:0.5px solid var(--border);background:var(--dark);transition:transform .35s, border-color .35s, background .35s}
+.exp-card:hover{border-color:var(--gold);transform:translateY(-6px);background:var(--dark3)}
+.exp-icon{width:56px;height:56px;border:0.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2rem;color:var(--gold);transition:border-color .35s, background .35s}
+.exp-card:hover .exp-icon{border-color:var(--gold);background:rgba(201,164,82,0.08)}
+.exp-icon svg{width:26px;height:26px}
 .exp-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:1.5rem;color:var(--ivory)}
 .exp-desc{font-size:0.85rem;color:var(--muted);line-height:1.9}
 
 /* CIRCUITS */
 .circuits{padding:10rem 4rem}
-.circuits-header{margin-bottom:6rem}
-.circuits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.circuit-card{
-  padding:4rem 3rem;border:0.5px solid var(--border);position:relative;overflow:hidden;
-  background:var(--dark2);transition:border-color 0.3s;
-}
-.circuit-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(to right, var(--gold), transparent);
-  transform:scaleX(0);transform-origin:left;transition:transform 0.4s;
-}
+.circuits-header{margin-bottom:5rem}
+.circuits-grid{display:flex;justify-content:center}
+.circuits-grid .circuit-card{max-width:460px;width:100%}
+.circuit-card{padding:4rem 3rem 3rem;border:0.5px solid var(--border);position:relative;overflow:hidden;background:var(--dark2);transition:transform .35s, border-color .35s;display:flex;flex-direction:column}
+.circuit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right, var(--gold), transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
 .circuit-card:hover::before{transform:scaleX(1)}
-.circuit-card:hover{border-color:var(--gold)}
-.circuit-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(201,164,82,0.08);position:absolute;top:2rem;right:2rem;line-height:1}
+.circuit-card:hover{border-color:var(--gold);transform:translateY(-6px)}
+.circuit-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(201,164,82,0.08);position:absolute;top:2rem;right:2rem;line-height:1;transition:color .35s}
+.circuit-card:hover .circuit-num{color:rgba(201,164,82,0.16)}
 .circuit-tag{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
 .circuit-name{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;letter-spacing:1px;margin-bottom:0.5rem}
-.circuit-sub{font-size:0.75rem;color:var(--muted);letter-spacing:2px;font-style:italic;margin-bottom:2.5rem}
+.circuit-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--muted);letter-spacing:1px;font-style:italic;margin-bottom:2.5rem}
 .circuit-details{list-style:none;margin-bottom:2.5rem}
-.circuit-details li{font-size:0.8rem;color:var(--muted);padding:0.6rem 0;border-bottom:0.5px solid rgba(201,164,82,0.08);padding-left:1rem;position:relative;line-height:1.6}
+.circuit-details li{font-size:0.8rem;color:var(--muted);padding:0.6rem 0 0.6rem 1rem;border-bottom:0.5px solid var(--border-soft);position:relative;line-height:1.6}
 .circuit-details li::before{content:'—';position:absolute;left:0;color:rgba(201,164,82,0.4)}
+.circuit-foot{margin-top:auto;display:flex;flex-direction:column;gap:1.4rem}
 .circuit-duration{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.circuit-link{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--ivory);text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:.4rem;align-self:flex-start;transition:color .3s, border-color .3s}
+.circuit-link:hover{color:var(--gold);border-color:var(--gold)}
+.circuit-link span{transition:transform .3s;display:inline-block}
+.circuit-link:hover span{transform:translateX(5px)}
 
 /* LEGACY */
 .legacy{padding:10rem 4rem;background:var(--dark2)}
 .legacy-inner{display:grid;grid-template-columns:1fr 2fr;gap:8rem;align-items:start}
 .legacy-names{display:grid;gap:2px;margin-top:3rem}
-.legacy-name{
-  padding:2rem 2.5rem;border:0.5px solid var(--border);
-  display:flex;align-items:center;gap:2rem;
-  background:var(--dark);transition:border-color 0.3s;
-}
-.legacy-name:hover{border-color:var(--gold)}
-.legacy-name-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(201,164,82,0.2)}
-.legacy-name-text{}
+.legacy-name{padding:2rem 2.5rem;border:0.5px solid var(--border);display:flex;align-items:center;gap:2rem;background:var(--dark);transition:border-color .3s, transform .3s, background .3s}
+.legacy-name:hover{border-color:var(--gold);transform:translateX(8px);background:var(--dark3)}
+.legacy-name-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(201,164,82,0.25)}
 .legacy-name-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px}
 .legacy-name-sub{font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
 
 /* CONTACT */
 .contact{padding:10rem 4rem}
 .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
-.contact-info p{color:var(--muted);font-size:0.9rem;line-height:1.9;margin-bottom:2rem}
+.contact-info p{color:var(--muted);font-size:0.9rem;line-height:1.9;margin:2rem 0}
 .contact-detail{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
 .contact-detail-label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);min-width:60px}
-.contact-detail-value{font-size:0.85rem;color:var(--ivory)}
+.contact-detail-value{font-size:0.85rem;color:var(--ivory);text-decoration:none;transition:color .3s}
+a.contact-detail-value:hover{color:var(--gold)}
 .contact-form{display:flex;flex-direction:column;gap:1rem}
 .form-group{display:flex;flex-direction:column;gap:0.4rem}
 .form-group label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
-.form-group input,.form-group textarea,.form-group select{
-  background:var(--dark2);border:0.5px solid var(--border);color:var(--ivory);
-  padding:1rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:300;
-  outline:none;transition:border-color 0.3s;
-}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
+.form-group input,.form-group textarea,.form-group select{background:var(--dark2);border:0.5px solid var(--border);color:var(--ivory);padding:1rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:300;outline:none;transition:border-color .3s, box-shadow .3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,164,82,0.08)}
 .form-group select option{background:var(--dark2)}
 .form-group textarea{resize:vertical;min-height:120px}
-.form-submit{
-  background:var(--gold);color:var(--dark);border:none;padding:1.1rem 3rem;
-  font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;
-  font-weight:500;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;
-}
-.form-submit:hover{background:var(--gold2)}
+.form-submit{background:var(--gold);color:var(--dark);border:none;padding:1.1rem 3rem;font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .3s, transform .3s;margin-top:0.5rem}
+.form-submit:hover{background:var(--gold2);transform:translateY(-2px)}
 .form-note{font-size:0.7rem;color:var(--muted);letter-spacing:1px;margin-top:0.5rem;font-style:italic}
 
 /* CTA FINAL */
-.cta-final{
-  background:var(--dark2);text-align:center;padding:12rem 4rem;
-  position:relative;overflow:hidden;
-}
-.cta-bg-text{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:22vw;color:rgba(201,164,82,0.025);
-  letter-spacing:-5px;pointer-events:none;white-space:nowrap;user-select:none;
-}
+.cta-final{background:var(--dark2);text-align:center;padding:12rem 4rem;position:relative;overflow:hidden}
+.cta-bg-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22vw;color:rgba(201,164,82,0.03);letter-spacing:-5px;pointer-events:none;white-space:nowrap;user-select:none}
 .cta-final .section-title{font-size:clamp(2.5rem,5vw,4.5rem);margin-bottom:1.5rem;position:relative}
-.cta-final p{font-size:0.9rem;color:var(--muted);line-height:1.9;margin-bottom:3rem;max-width:500px;margin-left:auto;margin-right:auto;position:relative}
-.cta-btn{
-  display:inline-block;border:0.5px solid var(--gold);color:var(--gold);
-  padding:1.2rem 4rem;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;
-  text-decoration:none;transition:all 0.3s;font-family:'Jost',sans-serif;position:relative;
-}
+.cta-final p{font-size:0.9rem;color:var(--muted);line-height:1.9;margin-bottom:3rem;max-width:500px;margin:0 auto 3rem;position:relative}
+.cta-btn{display:inline-block;border:0.5px solid var(--gold);color:var(--gold);padding:1.2rem 4rem;font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;text-decoration:none;transition:all .3s;font-family:'Jost',sans-serif;position:relative}
 .cta-btn:hover{background:var(--gold);color:var(--dark)}
 
 /* FOOTER */
-footer{
-  padding:3rem 4rem;border-top:0.5px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
+footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:4px;color:var(--gold)}
 .footer-sub{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:0.25rem}
 .footer-links{display:flex;gap:2.5rem}
-.footer-links a{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s}
+.footer-links a{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
 .footer-links a:hover{color:var(--gold)}
-.footer-copy{font-size:0.65rem;color:rgba(136,136,128,0.4);letter-spacing:1px}
+.footer-copy{font-size:0.65rem;color:rgba(155,155,143,0.5);letter-spacing:1px}
+
+/* floating book button */
+.float-book{position:fixed;right:2rem;bottom:2rem;z-index:80;background:var(--gold);color:var(--dark);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:1rem 1.8rem;text-decoration:none;border-radius:40px;box-shadow:0 10px 30px rgba(0,0,0,0.4);opacity:0;transform:translateY(20px);transition:opacity .4s, transform .4s, background .3s}
+.float-book.show{opacity:1;transform:translateY(0)}
+.float-book:hover{background:var(--gold2)}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease, transform 0.8s ease}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scrollPulse{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(0.5);transform-origin:top}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes glowDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-4%,3%)}}
 
 /* MOBILE */
 @media(max-width:900px){
-  nav{padding:1rem 1.5rem}
-  .nav-links{display:none}
+  nav{padding:1.1rem 1.5rem}
+  nav.scrolled{padding:.9rem 1.5rem}
+  .nav-links,.nav-cta{display:none}
+  .nav-toggle{display:flex}
   .hero{padding:0 1.5rem 4rem}
   .hero-content{padding-top:7rem}
+  .hero-scroll{left:1.5rem}
+  .hero-actions{flex-direction:column;align-items:flex-start}
   .strip{grid-template-columns:repeat(2,1fr)}
   .strip-item{padding:2rem 1.5rem;border-bottom:0.5px solid var(--border)}
+  .strip-item:nth-child(odd){border-right:0.5px solid var(--border)}
   .about,.contact-inner,.legacy-inner{grid-template-columns:1fr;gap:4rem}
   .about{padding:6rem 1.5rem}
   .experiences{padding:6rem 1.5rem}
@@ -222,16 +265,25 @@ footer{
   .legacy{padding:6rem 1.5rem}
   .contact{padding:6rem 1.5rem}
   .cta-final{padding:8rem 1.5rem}
-  footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
   .footer-links{flex-wrap:wrap;justify-content:center}
+  .float-book{right:1rem;bottom:1rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  .hero-eyebrow,.hero-title,.hero-tagline,.hero-actions{opacity:1}
 }
 </style>
 </head>
 <body>
 
+<div class="progress" id="progress"></div>
+
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">T&amp;T</a>
+  <a href="#" class="nav-logo" aria-label="Torque and Taste home">T&amp;T</a>
   <div class="nav-links">
     <a href="#experiences">Experiences</a>
     <a href="#circuits">Circuits</a>
@@ -239,21 +291,33 @@ footer{
     <a href="#contact">Contact</a>
   </div>
   <a href="#contact" class="nav-cta">Book Now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#experiences">Experiences</a>
+  <a href="#circuits">Circuits</a>
+  <a href="#legacy">Legacy</a>
+  <a href="#contact">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-glow" id="heroGlow"></div>
   <div class="hero-grid"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Private Automotive Experiences</div>
-    <h1 class="hero-title">
-      Torque
-      <em>&amp; Taste</em>
-    </h1>
+    <h1 class="hero-title">Torque<em>&amp; Taste</em></h1>
     <p class="hero-tagline">Argentina <span>·</span> Cars <span>·</span> Flavors</p>
-    <a href="#circuits" class="hero-cta">Explore Circuits</a>
+    <div class="hero-actions">
+      <a href="#circuits" class="btn-primary">Explore Circuits</a>
+      <a href="#contact" class="btn-ghost">Plan Your Trip</a>
+    </div>
   </div>
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
@@ -264,15 +328,15 @@ footer{
 <!-- STRIP -->
 <div class="strip">
   <div class="strip-item reveal">
-    <div class="strip-num">3</div>
-    <div class="strip-label">Curated Circuits</div>
+    <div class="strip-num" data-count="1">1</div>
+    <div class="strip-label">Signature Circuit</div>
   </div>
   <div class="strip-item reveal">
     <div class="strip-num">1–2</div>
     <div class="strip-label">Days from Buenos Aires</div>
   </div>
   <div class="strip-item reveal">
-    <div class="strip-num">100%</div>
+    <div class="strip-num" data-count="100" data-suffix="%">100%</div>
     <div class="strip-label">Private &amp; Tailored</div>
   </div>
   <div class="strip-item reveal">
@@ -286,6 +350,7 @@ footer{
   <div class="about-text reveal">
     <p class="section-eyebrow">Who We Are</p>
     <h2 class="section-title">Where the road<br>meets <em>the table</em></h2>
+    <p class="lead">Argentina's racing soul and its kitchens — on one private journey.</p>
     <p>Torque &amp; Taste is a Buenos Aires–based travel experience company dedicated to the intersection of Argentina's extraordinary automotive heritage and its world-class gastronomy and wine culture.</p>
     <p>Every circuit is private, fully curated, and designed for the discerning traveler who wants more than a museum ticket — they want the story, the road, and the flavor that comes with it.</p>
   </div>
@@ -305,19 +370,25 @@ footer{
   </div>
   <div class="exp-grid">
     <div class="exp-card reveal">
-      <div class="exp-icon">🏎</div>
+      <div class="exp-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 21 8l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1.5"/><path d="M5.5 18H4a1 1 0 0 1-1-1v-4"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+      </div>
       <div class="exp-title">Motor Heritage</div>
       <div class="exp-desc">Private access to workshops, museums, and historic circuits. Not as a tourist — as a guest with context and connection.</div>
     </div>
     <div class="exp-card reveal">
-      <div class="exp-icon">🍷</div>
+      <div class="exp-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 6a5 5 0 0 1-10 0L6 3z"/><path d="M12 14v5"/><path d="M8 21h8"/></svg>
+      </div>
       <div class="exp-title">Taste &amp; Territory</div>
       <div class="exp-desc">Regional producers, hidden parrillas, and chef-driven restaurants chosen for authenticity, not TripAdvisor ratings.</div>
     </div>
     <div class="exp-card reveal">
-      <div class="exp-icon">🏆</div>
+      <div class="exp-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4v2a3 3 0 0 0 3 3"/><path d="M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 13v4"/><path d="M9 21h6l-1-4h-4l-1 4z"/></svg>
+      </div>
       <div class="exp-title">Racing Legacy</div>
-      <div class="exp-desc">Fangio. Reutemann. Pur Sang. Argentina's contribution to motorsport history is extraordinary — and deeply personal. We bring that history to life.</div>
+      <div class="exp-desc">Fangio. Reutemann. Colapinto. Argentina's contribution to motorsport history is extraordinary — and deeply personal. We bring that history to life.</div>
     </div>
   </div>
 </section>
@@ -325,8 +396,8 @@ footer{
 <!-- CIRCUITS -->
 <section class="circuits" id="circuits">
   <div class="circuits-header reveal">
-    <p class="section-eyebrow">Our Circuits</p>
-    <h2 class="section-title">Three routes.<br><em>One Argentina.</em></h2>
+    <p class="section-eyebrow">Our Circuit</p>
+    <h2 class="section-title">One route.<br><em>One Argentina.</em></h2>
   </div>
   <div class="circuits-grid">
 
@@ -343,37 +414,10 @@ footer{
         <li>El Casco de Fangio — boutique hotel dinner</li>
         <li>Seafood lunch on the Atlantic coast</li>
       </ul>
-      <div class="circuit-duration">1–2 Days · Departs Buenos Aires</div>
-    </div>
-
-    <div class="circuit-card reveal">
-      <div class="circuit-num">02</div>
-      <div class="circuit-tag">Alta Gracia · Córdoba</div>
-      <div class="circuit-name">La Fortaleza<br>de Berta</div>
-      <div class="circuit-sub">The Wizard of Alta Gracia</div>
-      <ul class="circuit-details">
-        <li>La Fortaleza — private visit to Oreste Berta's workshop</li>
-        <li>The engineer behind the legendary Torino 380W</li>
-        <li>Sierra Chica mountain drive</li>
-        <li>Wine dinner at a Córdoba bodega</li>
-        <li>Overnight in a boutique estancia</li>
-      </ul>
-      <div class="circuit-duration">2 Days · 1 Night · Departs Buenos Aires</div>
-    </div>
-
-    <div class="circuit-card reveal">
-      <div class="circuit-num">03</div>
-      <div class="circuit-tag">Paraná · Entre Ríos</div>
-      <div class="circuit-name">Pur Sang<br>Workshop</div>
-      <div class="circuit-sub">Where Bugattis are reborn</div>
-      <ul class="circuit-details">
-        <li>Pur Sang — handbuilt Bugatti replicas since 1992</li>
-        <li>Private workshop access and artisan demonstration</li>
-        <li>Drive along the Paraná delta</li>
-        <li>Riverside asado with local producers</li>
-        <li>Optional overnight in Entre Ríos</li>
-      </ul>
-      <div class="circuit-duration">1–2 Days · Departs Buenos Aires</div>
+      <div class="circuit-foot">
+        <div class="circuit-duration">1–2 Days · Departs Buenos Aires</div>
+        <a href="#contact" class="circuit-link" data-circuit="fangio">Reserve this circuit <span>→</span></a>
+      </div>
     </div>
 
   </div>
@@ -412,8 +456,8 @@ footer{
       <div class="legacy-name">
         <div class="legacy-name-num">04</div>
         <div class="legacy-name-text">
-          <div class="legacy-name-title">Pur Sang</div>
-          <div class="legacy-name-sub">Handbuilt Bugatti Replicas · Paraná</div>
+          <div class="legacy-name-title">Franco Colapinto</div>
+          <div class="legacy-name-sub">Formula 1 · BWT Alpine F1 Team · Pilar</div>
         </div>
       </div>
       <div class="legacy-name">
@@ -433,10 +477,12 @@ footer{
     <div class="reveal">
       <p class="section-eyebrow">Get in Touch</p>
       <h2 class="section-title">Ready to<br><em>hit the road?</em></h2>
-      <p style="color:var(--muted);font-size:0.9rem;line-height:1.9;margin:2rem 0">Every circuit is fully private and tailored to your group. Tell us who you are and when you're coming — we'll design the experience around you.</p>
+      <div class="contact-info">
+        <p>Every circuit is fully private and tailored to your group. Tell us who you are and when you're coming — we'll design the experience around you.</p>
+      </div>
       <div class="contact-detail">
         <span class="contact-detail-label">Email</span>
-        <span class="contact-detail-value">lean@torqueandtaste.com</span>
+        <a href="mailto:lean@torqueandtaste.com" class="contact-detail-value">lean@torqueandtaste.com</a>
       </div>
       <div class="contact-detail">
         <span class="contact-detail-label">Based</span>
@@ -445,34 +491,32 @@ footer{
     </div>
     <form class="contact-form reveal" action="https://formspree.io/f/mjglekgb" method="POST">
       <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="name" required placeholder="Your name">
+        <label for="f-name">Full Name</label>
+        <input id="f-name" type="text" name="name" required placeholder="Your name">
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" required placeholder="your@email.com">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="email" required placeholder="your@email.com">
       </div>
       <div class="form-group">
-        <label>Phone / WhatsApp *</label>
-        <input type="tel" name="phone" required placeholder="+1 555 000 0000">
+        <label for="f-phone">Phone / WhatsApp *</label>
+        <input id="f-phone" type="tel" name="phone" required placeholder="+1 555 000 0000">
       </div>
       <div class="form-group">
-        <label>Circuit of Interest</label>
-        <select name="circuit">
+        <label for="f-circuit">Circuit of Interest</label>
+        <select id="f-circuit" name="circuit">
           <option value="">— Select a circuit —</option>
           <option value="fangio">The Fangio Circuit</option>
-          <option value="berta">La Fortaleza de Berta</option>
-          <option value="pursang">Pur Sang Workshop</option>
           <option value="custom">Custom / Multiple</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Estimated Travel Dates</label>
-        <input type="text" name="dates" placeholder="e.g. October 2025">
+        <label for="f-dates">Estimated Travel Dates</label>
+        <input id="f-dates" type="text" name="dates" placeholder="e.g. October 2025">
       </div>
       <div class="form-group">
-        <label>Message</label>
-        <textarea name="message" placeholder="Tell us about your group and what you're looking for…"></textarea>
+        <label for="f-message">Message</label>
+        <textarea id="f-message" name="message" placeholder="Tell us about your group and what you're looking for…"></textarea>
       </div>
       <button type="submit" class="form-submit">Send Message</button>
       <p class="form-note">We'll get back to you as fast as Fangio.</p>
@@ -484,7 +528,7 @@ footer{
 <section class="cta-final">
   <div class="cta-bg-text">ARGENTINA</div>
   <div style="position:relative">
-    <p class="section-eyebrow">Private Experiences</p>
+    <p class="section-eyebrow" style="justify-content:center">Private Experiences</p>
     <h2 class="section-title">Your Argentina.<br><em>Your pace.</em></h2>
     <p>Small groups. Private access. No compromises.<br>Designed for those who know the difference.</p>
     <a href="#contact" class="cta-btn">Plan Your Circuit</a>
@@ -503,22 +547,81 @@ footer{
     <a href="#legacy">Legacy</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="footer-copy">© 2025 Torque &amp; Taste</div>
+  <div class="footer-copy">© <span id="year">2025</span> Torque &amp; Taste</div>
 </footer>
 
-<script>
-// Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+<a href="#contact" class="float-book" id="floatBook">Book a Circuit</a>
 
-// Reveal on scroll
+<script>
+// Nav scroll + progress bar
+const nav = document.getElementById('nav');
+const progress = document.getElementById('progress');
+const floatBook = document.getElementById('floatBook');
+function onScroll(){
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 50);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  floatBook.classList.toggle('show', y > 700);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// Mobile menu
+const toggle = document.getElementById('navToggle');
+const menu = document.getElementById('mobileMenu');
+toggle.addEventListener('click', () => {
+  const open = document.body.classList.toggle('menu-open');
+  toggle.setAttribute('aria-expanded', open);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  document.body.classList.remove('menu-open');
+  toggle.setAttribute('aria-expanded', false);
+}));
+
+// Reveal on scroll + count-up
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function countUp(el){
+  const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  if (reduce){ el.textContent = target + suffix; return; }
+  const dur = 1200, start = performance.now();
+  function tick(now){
+    const p = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(p * target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add('visible');
+      const num = e.target.querySelector('[data-count]');
+      if (num && !num.dataset.done){ num.dataset.done = '1'; countUp(num); }
+      observer.unobserve(e.target);
+    }
+  });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Circuit "reserve" → preselect dropdown + smooth scroll
+document.querySelectorAll('.circuit-link').forEach(link => {
+  link.addEventListener('click', () => {
+    const sel = document.getElementById('f-circuit');
+    if (sel) sel.value = link.dataset.circuit;
+  });
+});
+
+// Subtle hero parallax
+if (!reduce){
+  const glow = document.getElementById('heroGlow');
+  window.addEventListener('scroll', () => {
+    glow.style.transform = 'translateY(' + window.scrollY * 0.15 + 'px)';
+  }, {passive:true});
+}
+
+// Dynamic year
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
-
