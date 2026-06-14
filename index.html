@@ -57,7 +57,8 @@ body.menu-open .mobile-menu{opacity:1;visibility:visible}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 4rem 4rem}
-.hero-bg{position:absolute;inset:0;background:var(--dark)}
+/* Foto de fondo del hero: para cambiarla, subí una imagen llamada "hero.jpg" a la carpeta fotos/ */
+.hero-bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,8,0.94) 0%,rgba(10,10,8,0.78) 42%,rgba(10,10,8,0.55) 100%),linear-gradient(to bottom,rgba(10,10,8,0.35),rgba(10,10,8,0.65)),url("fotos/hero.jpg") center 35%/cover no-repeat var(--dark)}
 .hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 72% 45%,rgba(201,164,82,0.10) 0%,transparent 70%);animation:glowDrift 14s ease-in-out infinite}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,164,82,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,164,82,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 60% 50%,#000 30%,transparent 80%)}
 .hero-line{position:absolute;top:0;bottom:0;right:35%;width:0.5px;background:linear-gradient(to bottom,transparent,rgba(201,164,82,0.18),transparent)}
@@ -215,6 +216,13 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 .footer-copy{font-size:0.65rem;color:rgba(155,155,143,0.5);letter-spacing:1px}
 .float-book{position:fixed;right:2rem;bottom:2rem;z-index:80;background:var(--gold);color:var(--dark);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:1rem 1.8rem;text-decoration:none;border-radius:40px;box-shadow:0 10px 30px rgba(0,0,0,0.4);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s,background .3s}
 .float-book.show{opacity:1;transform:translateY(0)}
+.nav-right{display:flex;align-items:center;gap:1.4rem}
+.lang-switch{display:flex;gap:1px;align-items:center}
+.lang-switch button{background:none;border:none;color:var(--muted);font-family:'Jost',sans-serif;font-weight:400;font-size:0.62rem;letter-spacing:2px;cursor:pointer;padding:5px 7px;transition:color .3s;text-transform:uppercase}
+.lang-switch button:hover{color:var(--ivory)}
+.lang-switch button.active{color:var(--gold)}
+.mobile-lang{margin-top:2.5rem}
+.mobile-lang button{font-size:1.1rem;letter-spacing:3px;padding:8px 14px}
 .float-book:hover{background:var(--gold2)}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -225,7 +233,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 @media(max-width:900px){
   nav{padding:1.1rem 1.5rem}
   nav.scrolled{padding:.9rem 1.5rem}
-  .nav-links,.nav-cta{display:none}
+  .nav-links,.nav-right{display:none}
   .nav-toggle{display:flex}
   .hero{padding:0 1.5rem 4rem}
   .hero-content{padding-top:7rem}
@@ -256,6 +264,21 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
   .hero-eyebrow,.hero-title,.hero-tagline,.hero-actions{opacity:1}
 }
 </style>
+<!-- Google Analytics (GA4). Pegá tu Measurement ID en GA_MEASUREMENT_ID (formato G-XXXXXXXXXX) y queda activo. -->
+<script>
+  window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; /* <-- REEMPLAZAR por el ID de Google Analytics */
+  (function(){
+    var id = window.GA_MEASUREMENT_ID;
+    if (!id || id.indexOf('XXXX') !== -1) return; /* inactivo hasta poner el ID real */
+    var s = document.createElement('script');
+    s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', id);
+  })();
+</script>
 </head>
 <body>
 
@@ -264,24 +287,32 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <nav id="nav">
   <a href="#" class="nav-logo" aria-label="Torque and Taste home">T&amp;T</a>
   <div class="nav-links">
-    <a href="#experiences">Experiences</a>
-    <a href="#circuits">Circuits</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#legacy">Legacy</a>
-    <a href="#contact">Contact</a>
+    <a href="#experiences" data-i18n="nav_exp">Experiences</a>
+    <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+    <a href="#gallery" data-i18n="nav_gal">Gallery</a>
+    <a href="#legacy" data-i18n="nav_leg">Legacy</a>
+    <a href="#contact" data-i18n="nav_con">Contact</a>
   </div>
-  <a href="#contact" class="nav-cta">Book Now</a>
+  <div class="nav-right">
+    <div class="lang-switch" data-langswitch>
+      <button data-lang="es">ES</button><button data-lang="pt">PT</button><button data-lang="en">EN</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="nav_book">Book Now</a>
+  </div>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#experiences">Experiences</a>
-  <a href="#circuits">Circuits</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#legacy">Legacy</a>
-  <a href="#contact">Contact</a>
+  <a href="#experiences" data-i18n="nav_exp">Experiences</a>
+  <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+  <a href="#gallery" data-i18n="nav_gal">Gallery</a>
+  <a href="#legacy" data-i18n="nav_leg">Legacy</a>
+  <a href="#contact" data-i18n="nav_con">Contact</a>
+  <div class="lang-switch mobile-lang" data-langswitch>
+    <button data-lang="es">ES</button><button data-lang="pt">PT</button><button data-lang="en">EN</button>
+  </div>
 </div>
 
 <section class="hero">
@@ -290,12 +321,12 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
   <div class="hero-grid"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Private Automotive Experiences</div>
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Private Automotive Experiences</div>
     <h1 class="hero-title">Torque<em>&amp; Taste</em></h1>
-    <p class="hero-tagline">Argentina <span>·</span> Cars <span>·</span> Flavors</p>
+    <p class="hero-tagline" data-i18n="hero_tagline">Argentina <span>·</span> Cars <span>·</span> Flavors</p>
     <div class="hero-actions">
-      <a href="#circuits" class="btn-primary">Explore Circuits</a>
-      <a href="#contact" class="btn-ghost">Plan Your Trip</a>
+      <a href="#circuits" class="btn-primary" data-i18n="hero_btn1">Explore Circuits</a>
+      <a href="#contact" class="btn-ghost" data-i18n="hero_btn2">Plan Your Trip</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -307,72 +338,72 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <div class="strip">
   <div class="strip-item reveal">
     <div class="strip-num">3</div>
-    <div class="strip-label">Circuits</div>
+    <div class="strip-label" data-i18n="strip_1">Circuits</div>
   </div>
   <div class="strip-item reveal">
     <div class="strip-num">1–2</div>
-    <div class="strip-label">Days from Buenos Aires</div>
+    <div class="strip-label" data-i18n="strip_2">Days from Buenos Aires</div>
   </div>
   <div class="strip-item reveal">
     <div class="strip-num">100%</div>
-    <div class="strip-label">Private &amp; Tailored</div>
+    <div class="strip-label" data-i18n="strip_3">Private &amp; Tailored</div>
   </div>
   <div class="strip-item reveal">
     <div class="strip-num">&#x221E;</div>
-    <div class="strip-label">Racing Legacy</div>
+    <div class="strip-label" data-i18n="strip_4">Racing Legacy</div>
   </div>
 </div>
 
 <section class="about" id="about">
   <div class="about-text reveal">
-    <p class="section-eyebrow">Who We Are</p>
-    <h2 class="section-title">Where the road<br>meets <em>the table</em></h2>
-    <p class="lead">Argentina's racing soul and its kitchens — on one private journey.</p>
-    <p>Torque &amp; Taste is a Buenos Aires–based travel experience company dedicated to the intersection of Argentina's extraordinary automotive heritage and its world-class gastronomy and wine culture.</p>
-    <p>Every circuit is private, fully curated, and designed for the discerning traveler who wants more than a museum ticket — they want the story, the road, and the flavor that comes with it.</p>
+    <p class="section-eyebrow" data-i18n="about_eyebrow">Who We Are</p>
+    <h2 class="section-title" data-i18n="about_title">Where the road<br>meets <em>the table</em></h2>
+    <p class="lead" data-i18n="about_lead">Argentina's racing soul and its kitchens — on one private journey.</p>
+    <p data-i18n="about_p1">Torque &amp; Taste is a Buenos Aires–based travel experience company dedicated to the intersection of Argentina's extraordinary automotive heritage and its world-class gastronomy and wine culture.</p>
+    <p data-i18n="about_p2">Every circuit is private, fully curated, and designed for the discerning traveler who wants more than a museum ticket — they want the story, the road, and the flavor that comes with it.</p>
   </div>
   <div class="about-visual reveal">
     <div class="about-frame">
       <span class="about-big">ARG</span>
-      <p class="about-quote">"Argentina gave motorsport some of its greatest legends. We take you to where those legends were born."</p>
+      <p class="about-quote" data-i18n="about_quote">"Argentina gave motorsport some of its greatest legends. We take you to where those legends were born."</p>
     </div>
   </div>
 </section>
 
 <section class="experiences" id="experiences">
   <div class="exp-header reveal">
-    <p class="section-eyebrow">What We Offer</p>
-    <h2 class="section-title">Three pillars.<br><em>One experience.</em></h2>
+    <p class="section-eyebrow" data-i18n="exp_eyebrow">What We Offer</p>
+    <h2 class="section-title" data-i18n="exp_title">Three pillars.<br><em>One experience.</em></h2>
   </div>
   <div class="exp-grid">
     <div class="exp-card reveal">
       <div class="exp-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 21 8l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1.5"/><path d="M5.5 18H4a1 1 0 0 1-1-1v-4"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
       </div>
-      <div class="exp-title">Motor Heritage</div>
-      <div class="exp-desc">Private access to workshops, museums, and historic circuits. Not as a tourist — as a guest with context and connection.</div>
+      <div class="exp-title" data-i18n="exp1_title">Motor Heritage</div>
+      <div class="exp-desc" data-i18n="exp1_desc">Private access to workshops, museums, and historic circuits. Not as a tourist — as a guest with context and connection.</div>
     </div>
     <div class="exp-card reveal">
       <div class="exp-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 6a5 5 0 0 1-10 0L6 3z"/><path d="M12 14v5"/><path d="M8 21h8"/></svg>
       </div>
-      <div class="exp-title">Taste &amp; Territory</div>
-      <div class="exp-desc">Regional producers, hidden parrillas, and chef-driven restaurants chosen for authenticity, not TripAdvisor ratings.</div>
+      <div class="exp-title" data-i18n="exp2_title">Taste &amp; Territory</div>
+      <div class="exp-desc" data-i18n="exp2_desc">Regional producers, hidden parrillas, and chef-driven restaurants chosen for authenticity, not TripAdvisor ratings.</div>
     </div>
     <div class="exp-card reveal">
       <div class="exp-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4v2a3 3 0 0 0 3 3"/><path d="M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 13v4"/><path d="M9 21h6l-1-4h-4l-1 4z"/></svg>
       </div>
-      <div class="exp-title">Racing Legacy</div>
-      <div class="exp-desc">Fangio. Reutemann. Colapinto. Argentina's contribution to motorsport history is extraordinary — and deeply personal. We bring that history to life.</div>
+      <div class="exp-title" data-i18n="exp3_title">Racing Legacy</div>
+      <div class="exp-desc" data-i18n="exp3_desc">Fangio. Reutemann. Colapinto. Argentina's contribution to motorsport history is extraordinary — and deeply personal. We bring that history to life.</div>
     </div>
   </div>
 </section>
 
 <section class="circuits" id="circuits">
   <div class="circuits-header reveal">
-    <p class="section-eyebrow">Our Circuits</p>
-    <h2 class="section-title">Three routes.<br><em>One Argentina.</em></h2>
+    <p class="section-eyebrow" data-i18n="cir_eyebrow">Our Circuits</p>
+    <h2 class="section-title" data-i18n="cir_title">Three routes.<br><em>One Argentina.</em></h2>
   </div>
   <div class="circuits-grid">
 
@@ -386,20 +417,20 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
       </div>
       <div class="circuit-num">01</div>
       <div class="circuit-body">
-        <div class="circuit-tag">Balcarce · Buenos Aires Province</div>
-        <div class="circuit-name">The Fangio<br>Circuit</div>
-        <div class="circuit-sub">Where a legend was born</div>
+        <div class="circuit-tag" data-i18n="c1_tag">Balcarce · Buenos Aires Province</div>
+        <div class="circuit-name" data-i18n="c1_name">The Fangio<br>Circuit</div>
+        <div class="circuit-sub" data-i18n="c1_sub">Where a legend was born</div>
         <ul class="circuit-details">
-          <li>Juan Manuel Fangio Museum — 5x World Champion</li>
-          <li>Private guided tour of the historic collection</li>
-          <li>Crespi Competición — live racing parts factory</li>
-          <li>Autódromo Juan Manuel Fangio — on-track experience</li>
-          <li>El Casco de Fangio — boutique hotel &amp; dinner</li>
-          <li>Seafood lunch on the Atlantic coast</li>
+          <li data-i18n="c1_d1">Juan Manuel Fangio Museum — 5x World Champion</li>
+          <li data-i18n="c1_d2">Private guided tour of the historic collection</li>
+          <li data-i18n="c1_d3">Crespi Competición — live racing parts factory</li>
+          <li data-i18n="c1_d4">Autódromo Juan Manuel Fangio — on-track experience</li>
+          <li data-i18n="c1_d5">El Casco de Fangio — boutique hotel &amp; dinner</li>
+          <li data-i18n="c1_d6">Seafood lunch on the Atlantic coast</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration">1–2 Days · Departs Buenos Aires</div>
-          <a href="#contact" class="circuit-link" data-circuit="fangio">Reserve this circuit <span>&#x2192;</span></a>
+          <div class="circuit-duration" data-i18n="c1_dur">1–2 Days · Departs Buenos Aires</div>
+          <a href="#contact" class="circuit-link" data-circuit="fangio" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
         </div>
       </div>
     </div>
@@ -412,23 +443,23 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="circuit-photo-placeholder" style="display:none"><span>02</span></div>
         <div class="circuit-photo-overlay">
-          <div class="coming-soon-badge">Coming 2026</div>
+          <div class="coming-soon-badge" data-i18n="c_coming">Coming 2026</div>
         </div>
       </div>
       <div class="circuit-num">02</div>
       <div class="circuit-body">
-        <div class="circuit-tag">Mendoza · Cuyo</div>
+        <div class="circuit-tag" data-i18n="c2_tag">Mendoza · Cuyo</div>
         <div class="circuit-name">Wine &amp; Wheels</div>
         <div class="circuit-sub">Ruta Malbec &amp; Motor</div>
         <ul class="circuit-details">
-          <li>Classic car driving through the Andean foothills</li>
-          <li>Private wine tasting at a boutique bodega in Valle de Uco</li>
-          <li>Chef-driven lunch at Espacio Autiq</li>
-          <li>Argentina's most iconic wine region — from behind the wheel</li>
+          <li data-i18n="c2_d1">Classic car driving through the Andean foothills</li>
+          <li data-i18n="c2_d2">Private wine tasting at a boutique bodega in Valle de Uco</li>
+          <li data-i18n="c2_d3">Chef-driven lunch at Espacio Autiq</li>
+          <li data-i18n="c2_d4">Argentina's most iconic wine region — from behind the wheel</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration">1–2 Days · Mendoza</div>
-          <p class="circuit-coming-label">Inquire for early access</p>
+          <div class="circuit-duration" data-i18n="c2_dur">1–2 Days · Mendoza</div>
+          <p class="circuit-coming-label" data-i18n="c_inquire">Inquire for early access</p>
         </div>
       </div>
     </div>
@@ -441,22 +472,22 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="circuit-photo-placeholder" style="display:none"><span>03</span></div>
         <div class="circuit-photo-overlay">
-          <div class="coming-soon-badge">Coming 2026</div>
+          <div class="coming-soon-badge" data-i18n="c_coming">Coming 2026</div>
         </div>
       </div>
       <div class="circuit-num">03</div>
       <div class="circuit-body">
-        <div class="circuit-tag">Greater Buenos Aires</div>
+        <div class="circuit-tag" data-i18n="c3_tag">Greater Buenos Aires</div>
         <div class="circuit-name">Biscayne<br>&amp; Bodega</div>
         <div class="circuit-sub">Don Torcuato · Campana</div>
         <ul class="circuit-details">
-          <li>Drive a Biscayne roadster from Bessia Motorsport's workshop</li>
-          <li>Private visit to a world-class classic car collection</li>
-          <li>Bodega Gamboa — private tasting &amp; lunch at Terruño restaurant</li>
+          <li data-i18n="c3_d1">Drive a Biscayne roadster from Bessia Motorsport's workshop</li>
+          <li data-i18n="c3_d2">Private visit to a world-class classic car collection</li>
+          <li data-i18n="c3_d3">Bodega Gamboa — private tasting &amp; lunch at Terruño restaurant</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration">1 Day · Departs Buenos Aires</div>
-          <p class="circuit-coming-label">Inquire for early access</p>
+          <div class="circuit-duration" data-i18n="c3_dur">1 Day · Departs Buenos Aires</div>
+          <p class="circuit-coming-label" data-i18n="c_inquire">Inquire for early access</p>
         </div>
       </div>
     </div>
@@ -466,11 +497,11 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 
 <section class="gallery" id="gallery">
   <div class="gallery-header reveal">
-    <p class="section-eyebrow">Moments</p>
-    <h2 class="section-title">From the <em>road</em>.</h2>
+    <p class="section-eyebrow" data-i18n="gal_eyebrow">Moments</p>
+    <h2 class="section-title" data-i18n="gal_title">From the <em>road</em>.</h2>
   </div>
   <div class="gallery-grid" id="galleryGrid">
-    <p class="gallery-msg">Cargando fotos&#x2026;</p>
+    <p class="gallery-msg" data-i18n="gal_loading">Cargando fotos&#x2026;</p>
   </div>
 </section>
 
@@ -483,30 +514,30 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <section class="legacy" id="legacy">
   <div class="legacy-inner">
     <div class="reveal">
-      <p class="section-eyebrow">The Legacy</p>
-      <h2 class="section-title">Names that<br><em>shaped</em><br>motorsport.</h2>
-      <p style="color:var(--muted);font-size:0.9rem;line-height:1.9;margin-top:2rem">Argentina produced some of the greatest drivers, engineers, and craftsmen in the history of motorsport. Our circuits are built around their stories.</p>
+      <p class="section-eyebrow" data-i18n="leg_eyebrow">The Legacy</p>
+      <h2 class="section-title" data-i18n="leg_title">Names that<br><em>shaped</em><br>motorsport.</h2>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.9;margin-top:2rem" data-i18n="leg_p">Argentina produced some of the greatest drivers, engineers, and craftsmen in the history of motorsport. Our circuits are built around their stories.</p>
     </div>
     <div class="legacy-names reveal">
       <div class="legacy-name">
         <div class="legacy-name-num">01</div>
         <div class="legacy-name-text">
           <div class="legacy-name-title">Juan Manuel Fangio</div>
-          <div class="legacy-name-sub">5&#x00D7; Formula 1 World Champion · Balcarce</div>
+          <div class="legacy-name-sub" data-i18n="l1_sub">5&#x00D7; Formula 1 World Champion · Balcarce</div>
         </div>
       </div>
       <div class="legacy-name">
         <div class="legacy-name-num">02</div>
         <div class="legacy-name-text">
           <div class="legacy-name-title">Oreste Berta</div>
-          <div class="legacy-name-sub">Engine Wizard · Nürburgring 1969 · Alta Gracia</div>
+          <div class="legacy-name-sub" data-i18n="l2_sub">Engine Wizard · Nürburgring 1969 · Alta Gracia</div>
         </div>
       </div>
       <div class="legacy-name">
         <div class="legacy-name-num">03</div>
         <div class="legacy-name-text">
           <div class="legacy-name-title">Carlos Reutemann</div>
-          <div class="legacy-name-sub">Formula 1 Driver · Santa Fe</div>
+          <div class="legacy-name-sub" data-i18n="l3_sub">Formula 1 Driver · Santa Fe</div>
         </div>
       </div>
       <div class="legacy-name">
@@ -520,7 +551,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
         <div class="legacy-name-num">05</div>
         <div class="legacy-name-text">
           <div class="legacy-name-title">Horacio Pagani</div>
-          <div class="legacy-name-sub">Founder of Pagani Automobili · Buenos Aires</div>
+          <div class="legacy-name-sub" data-i18n="l5_sub">Founder of Pagani Automobili · Buenos Aires</div>
         </div>
       </div>
     </div>
@@ -530,53 +561,53 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="reveal">
-      <p class="section-eyebrow">Get in Touch</p>
-      <h2 class="section-title">Ready to<br><em>hit the road?</em></h2>
+      <p class="section-eyebrow" data-i18n="con_eyebrow">Get in Touch</p>
+      <h2 class="section-title" data-i18n="con_title">Ready to<br><em>hit the road?</em></h2>
       <div class="contact-info">
-        <p>Every circuit is fully private and tailored to your group. Tell us who you are and when you're coming — we'll design the experience around you.</p>
+        <p data-i18n="con_info">Every circuit is fully private and tailored to your group. Tell us who you are and when you're coming — we'll design the experience around you.</p>
       </div>
       <div class="contact-detail">
-        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-label" data-i18n="con_label_email">Email</span>
         <a href="mailto:lean@torqueandtaste.com" class="contact-detail-value">lean@torqueandtaste.com</a>
       </div>
       <div class="contact-detail">
-        <span class="contact-detail-label">Based</span>
+        <span class="contact-detail-label" data-i18n="con_label_based">Based</span>
         <span class="contact-detail-value">Buenos Aires, Argentina</span>
       </div>
     </div>
     <form class="contact-form reveal" action="https://formspree.io/f/mjglekgb" method="POST">
       <div class="form-group">
-        <label for="f-name">Full Name</label>
-        <input id="f-name" type="text" name="name" required placeholder="Your name">
+        <label for="f-name" data-i18n="f_name">Full Name</label>
+        <input id="f-name" type="text" name="name" required placeholder="Your name" data-i18n-ph="ph_name">
       </div>
       <div class="form-group">
-        <label for="f-email">Email</label>
+        <label for="f-email" data-i18n="f_email">Email</label>
         <input id="f-email" type="email" name="email" required placeholder="your@email.com">
       </div>
       <div class="form-group">
-        <label for="f-phone">Phone / WhatsApp</label>
+        <label for="f-phone" data-i18n="f_phone">Phone / WhatsApp</label>
         <input id="f-phone" type="tel" name="phone" required placeholder="+1 555 000 0000">
       </div>
       <div class="form-group">
-        <label for="f-circuit">Circuit of Interest</label>
+        <label for="f-circuit" data-i18n="f_circuit">Circuit of Interest</label>
         <select id="f-circuit" name="circuit">
-          <option value="">— Select a circuit —</option>
-          <option value="fangio">The Fangio Circuit</option>
+          <option value="" data-i18n="opt_select">— Select a circuit —</option>
+          <option value="fangio" data-i18n="opt_fangio">The Fangio Circuit</option>
           <option value="mendoza">Wine &amp; Wheels — Mendoza</option>
           <option value="biscayne">Biscayne &amp; Bodega — Buenos Aires</option>
-          <option value="custom">Custom / Multiple</option>
+          <option value="custom" data-i18n="opt_custom">Custom / Multiple</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="f-dates">Estimated Travel Dates</label>
-        <input id="f-dates" type="text" name="dates" placeholder="e.g. October 2026">
+        <label for="f-dates" data-i18n="f_dates">Estimated Travel Dates</label>
+        <input id="f-dates" type="text" name="dates" placeholder="e.g. October 2026" data-i18n-ph="ph_dates">
       </div>
       <div class="form-group">
-        <label for="f-message">Message</label>
-        <textarea id="f-message" name="message" placeholder="Tell us about your group and what you're looking for&#x2026;"></textarea>
+        <label for="f-message" data-i18n="f_message">Message</label>
+        <textarea id="f-message" name="message" placeholder="Tell us about your group and what you're looking for&#x2026;" data-i18n-ph="ph_message"></textarea>
       </div>
-      <button type="submit" class="form-submit">Send Message</button>
-      <p class="form-note">We'll get back to you as fast as Fangio.</p>
+      <button type="submit" class="form-submit" data-i18n="f_submit">Send Message</button>
+      <p class="form-note" data-i18n="f_note">We'll get back to you as fast as Fangio.</p>
     </form>
   </div>
 </section>
@@ -584,10 +615,10 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <section class="cta-final">
   <div class="cta-bg-text">ARGENTINA</div>
   <div style="position:relative">
-    <p class="section-eyebrow" style="justify-content:center">Private Experiences</p>
-    <h2 class="section-title">Your Argentina.<br><em>Your pace.</em></h2>
-    <p>Small groups. Private access. No compromises.<br>Designed for those who know the difference.</p>
-    <a href="#contact" class="cta-btn">Plan Your Circuit</a>
+    <p class="section-eyebrow" style="justify-content:center" data-i18n="cta_eyebrow">Private Experiences</p>
+    <h2 class="section-title" data-i18n="cta_title">Your Argentina.<br><em>Your pace.</em></h2>
+    <p data-i18n="cta_p">Small groups. Private access. No compromises.<br>Designed for those who know the difference.</p>
+    <a href="#contact" class="cta-btn" data-i18n="cta_btn">Plan Your Circuit</a>
   </div>
 </section>
 
@@ -597,16 +628,16 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
     <div class="footer-sub">Buenos Aires · Argentina</div>
   </div>
   <div class="footer-links">
-    <a href="#experiences">Experiences</a>
-    <a href="#circuits">Circuits</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#legacy">Legacy</a>
-    <a href="#contact">Contact</a>
+    <a href="#experiences" data-i18n="nav_exp">Experiences</a>
+    <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+    <a href="#gallery" data-i18n="nav_gal">Gallery</a>
+    <a href="#legacy" data-i18n="nav_leg">Legacy</a>
+    <a href="#contact" data-i18n="nav_con">Contact</a>
   </div>
   <div class="footer-copy">&#x00A9; <span id="year">2026</span> Torque &amp; Taste</div>
 </footer>
 
-<a href="#contact" class="float-book" id="floatBook">Book a Circuit</a>
+<a href="#contact" class="float-book" id="floatBook" data-i18n="float_book">Book a Circuit</a>
 
 <script>
 const nav = document.getElementById('nav');
@@ -652,6 +683,249 @@ if (!reduce){
 }
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ===== i18n: ES / PT / EN — detecta el idioma del sistema, con selector manual ===== */
+const I18N = {
+  es: {
+    nav_exp:`Experiencias`, nav_cir:`Circuitos`, nav_gal:`Galería`, nav_leg:`Legado`, nav_con:`Contacto`,
+    nav_book:`Reservar`, float_book:`Reservá un circuito`,
+    hero_eyebrow:`Experiencias Automovilísticas Privadas`,
+    hero_tagline:`Argentina <span>·</span> Autos <span>·</span> Sabores`,
+    hero_btn1:`Explorá los circuitos`, hero_btn2:`Planeá tu viaje`,
+    strip_1:`Circuitos`, strip_2:`Días desde Buenos Aires`, strip_3:`Privado y a medida`, strip_4:`Legado de carreras`,
+    about_eyebrow:`Quiénes somos`,
+    about_title:`Donde el camino<br>se encuentra con <em>la mesa</em>`,
+    about_lead:`El alma fierrera de Argentina y sus cocinas — en un solo viaje privado.`,
+    about_p1:`Torque &amp; Taste es una empresa de experiencias de viaje con base en Buenos Aires, dedicada al cruce entre la extraordinaria herencia automovilística de Argentina y su gastronomía y cultura del vino de clase mundial.`,
+    about_p2:`Cada circuito es privado, totalmente curado y pensado para el viajero exigente que busca más que una entrada a un museo: quiere la historia, el camino y el sabor que los acompaña.`,
+    about_quote:`«Argentina le dio al automovilismo algunas de sus mayores leyendas. Te llevamos a donde nacieron.»`,
+    exp_eyebrow:`Qué ofrecemos`,
+    exp_title:`Tres pilares.<br><em>Una experiencia.</em>`,
+    exp1_title:`Herencia fierrera`,
+    exp1_desc:`Acceso privado a talleres, museos y circuitos históricos. No como turista, sino como invitado, con contexto y conexión.`,
+    exp2_title:`Sabor y territorio`,
+    exp2_desc:`Productores regionales, parrillas escondidas y restaurantes de autor elegidos por su autenticidad, no por su puntaje en TripAdvisor.`,
+    exp3_title:`Legado de carreras`,
+    exp3_desc:`Fangio. Reutemann. Colapinto. El aporte de Argentina a la historia del automovilismo es extraordinario y profundamente personal. Le damos vida a esa historia.`,
+    cir_eyebrow:`Nuestros circuitos`,
+    cir_title:`Tres rutas.<br><em>Una Argentina.</em>`,
+    c_coming:`Próximamente 2026`, c_inquire:`Consultá por acceso anticipado`, c_reserve:`Reservá este circuito <span>&#x2192;</span>`,
+    c1_tag:`Balcarce · Provincia de Buenos Aires`, c1_name:`El Circuito<br>Fangio`, c1_sub:`Donde nació una leyenda`,
+    c1_d1:`Museo Juan Manuel Fangio — 5 veces campeón del mundo`,
+    c1_d2:`Visita guiada privada a la colección histórica`,
+    c1_d3:`Crespi Competición — fábrica de partes de carrera en vivo`,
+    c1_d4:`Autódromo Juan Manuel Fangio — experiencia en pista`,
+    c1_d5:`El Casco de Fangio — hotel boutique y cena`,
+    c1_d6:`Almuerzo de mariscos en la costa atlántica`,
+    c1_dur:`1–2 días · Sale de Buenos Aires`,
+    c2_tag:`Mendoza · Cuyo`,
+    c2_d1:`Manejo de autos clásicos por la precordillera andina`,
+    c2_d2:`Degustación privada de vinos en una bodega boutique del Valle de Uco`,
+    c2_d3:`Almuerzo de autor en Espacio Autiq`,
+    c2_d4:`La región vitivinícola más icónica de Argentina — al volante`,
+    c2_dur:`1–2 días · Mendoza`,
+    c3_tag:`Gran Buenos Aires`,
+    c3_d1:`Manejá un roadster Biscayne del taller de Bessia Motorsport`,
+    c3_d2:`Visita privada a una colección de autos clásicos de clase mundial`,
+    c3_d3:`Bodega Gamboa — degustación privada y almuerzo en el restaurante Terruño`,
+    c3_dur:`1 día · Sale de Buenos Aires`,
+    gal_eyebrow:`Momentos`, gal_title:`Desde el <em>camino</em>.`,
+    gal_loading:`Cargando fotos…`, gal_empty:`Pronto sumaremos más fotos.`,
+    gal_error:`No se pudieron cargar las fotos en este momento. Probá recargar la página en un rato.`,
+    leg_eyebrow:`El legado`, leg_title:`Nombres que<br><em>marcaron</em><br>el automovilismo.`,
+    leg_p:`Argentina dio algunos de los mejores pilotos, ingenieros y artesanos de la historia del automovilismo. Nuestros circuitos se construyen alrededor de sus historias.`,
+    l1_sub:`5&#x00D7; campeón mundial de Fórmula 1 · Balcarce`,
+    l2_sub:`Mago de los motores · Nürburgring 1969 · Alta Gracia`,
+    l3_sub:`Piloto de Fórmula 1 · Santa Fe`,
+    l5_sub:`Fundador de Pagani Automobili · Buenos Aires`,
+    con_eyebrow:`Contacto`, con_title:`¿Listo para<br><em>salir a la ruta?</em>`,
+    con_info:`Cada circuito es totalmente privado y a medida de tu grupo. Contanos quién sos y cuándo venís, y diseñamos la experiencia alrededor tuyo.`,
+    con_label_email:`Email`, con_label_based:`Base`,
+    f_name:`Nombre completo`, f_email:`Email`, f_phone:`Teléfono / WhatsApp`, f_circuit:`Circuito de interés`,
+    f_dates:`Fechas estimadas de viaje`, f_message:`Mensaje`,
+    opt_select:`— Elegí un circuito —`, opt_fangio:`El Circuito Fangio`, opt_custom:`Personalizado / Varios`,
+    ph_name:`Tu nombre`, ph_dates:`ej. Octubre 2026`, ph_message:`Contanos sobre tu grupo y qué estás buscando…`,
+    f_submit:`Enviar mensaje`, f_note:`Te respondemos tan rápido como Fangio.`,
+    cta_eyebrow:`Experiencias privadas`, cta_title:`Tu Argentina.<br><em>Tu ritmo.</em>`,
+    cta_p:`Grupos chicos. Acceso privado. Sin concesiones.<br>Diseñado para quienes saben la diferencia.`,
+    cta_btn:`Planeá tu circuito`,
+    _title:`Torque & Taste — Experiencias Automovilísticas Privadas en Argentina`,
+    _desc:`Experiencias de viaje privadas y curadas sobre el automovilismo argentino — Fangio, Colapinto y las leyendas del automovilismo. Desde Buenos Aires.`
+  },
+  pt: {
+    nav_exp:`Experiências`, nav_cir:`Circuitos`, nav_gal:`Galeria`, nav_leg:`Legado`, nav_con:`Contato`,
+    nav_book:`Reservar`, float_book:`Reserve um circuito`,
+    hero_eyebrow:`Experiências Automotivas Privadas`,
+    hero_tagline:`Argentina <span>·</span> Carros <span>·</span> Sabores`,
+    hero_btn1:`Explore os circuitos`, hero_btn2:`Planeje sua viagem`,
+    strip_1:`Circuitos`, strip_2:`Dias saindo de Buenos Aires`, strip_3:`Privado e sob medida`, strip_4:`Legado das pistas`,
+    about_eyebrow:`Quem somos`,
+    about_title:`Onde a estrada<br>encontra <em>a mesa</em>`,
+    about_lead:`A alma automobilística da Argentina e suas cozinhas — em uma única viagem privada.`,
+    about_p1:`A Torque &amp; Taste é uma empresa de experiências de viagem sediada em Buenos Aires, dedicada ao encontro entre a extraordinária herança automobilística da Argentina e sua gastronomia e cultura do vinho de classe mundial.`,
+    about_p2:`Cada circuito é privado, totalmente curado e pensado para o viajante exigente que quer mais do que um ingresso de museu: quer a história, a estrada e o sabor que vêm junto.`,
+    about_quote:`«A Argentina deu ao automobilismo algumas de suas maiores lendas. Levamos você até onde elas nasceram.»`,
+    exp_eyebrow:`O que oferecemos`,
+    exp_title:`Três pilares.<br><em>Uma experiência.</em>`,
+    exp1_title:`Herança automotiva`,
+    exp1_desc:`Acesso privado a oficinas, museus e circuitos históricos. Não como turista, mas como convidado, com contexto e conexão.`,
+    exp2_title:`Sabor e território`,
+    exp2_desc:`Produtores regionais, parrillas escondidas e restaurantes autorais escolhidos pela autenticidade, não pela nota no TripAdvisor.`,
+    exp3_title:`Legado das pistas`,
+    exp3_desc:`Fangio. Reutemann. Colapinto. A contribuição da Argentina à história do automobilismo é extraordinária — e profundamente pessoal. Damos vida a essa história.`,
+    cir_eyebrow:`Nossos circuitos`,
+    cir_title:`Três rotas.<br><em>Uma Argentina.</em>`,
+    c_coming:`Em breve 2026`, c_inquire:`Consulte sobre acesso antecipado`, c_reserve:`Reserve este circuito <span>&#x2192;</span>`,
+    c1_tag:`Balcarce · Província de Buenos Aires`, c1_name:`O Circuito<br>Fangio`, c1_sub:`Onde uma lenda nasceu`,
+    c1_d1:`Museu Juan Manuel Fangio — 5 vezes campeão mundial`,
+    c1_d2:`Visita guiada privada à coleção histórica`,
+    c1_d3:`Crespi Competición — fábrica de peças de corrida ao vivo`,
+    c1_d4:`Autódromo Juan Manuel Fangio — experiência na pista`,
+    c1_d5:`El Casco de Fangio — hotel boutique e jantar`,
+    c1_d6:`Almoço de frutos do mar na costa atlântica`,
+    c1_dur:`1–2 dias · Saída de Buenos Aires`,
+    c2_tag:`Mendoza · Cuyo`,
+    c2_d1:`Direção de carros clássicos pelas encostas dos Andes`,
+    c2_d2:`Degustação privada de vinhos em uma bodega boutique no Valle de Uco`,
+    c2_d3:`Almoço autoral no Espacio Autiq`,
+    c2_d4:`A região vinícola mais icônica da Argentina — ao volante`,
+    c2_dur:`1–2 dias · Mendoza`,
+    c3_tag:`Grande Buenos Aires`,
+    c3_d1:`Dirija um roadster Biscayne da oficina da Bessia Motorsport`,
+    c3_d2:`Visita privada a uma coleção de carros clássicos de classe mundial`,
+    c3_d3:`Bodega Gamboa — degustação privada e almoço no restaurante Terruño`,
+    c3_dur:`1 dia · Saída de Buenos Aires`,
+    gal_eyebrow:`Momentos`, gal_title:`Da <em>estrada</em>.`,
+    gal_loading:`Carregando fotos…`, gal_empty:`Em breve mais fotos.`,
+    gal_error:`Não foi possível carregar as fotos agora. Tente recarregar a página em instantes.`,
+    leg_eyebrow:`O legado`, leg_title:`Nomes que<br><em>marcaram</em><br>o automobilismo.`,
+    leg_p:`A Argentina produziu alguns dos maiores pilotos, engenheiros e artesãos da história do automobilismo. Nossos circuitos são construídos em torno de suas histórias.`,
+    l1_sub:`5&#x00D7; campeão mundial de Fórmula 1 · Balcarce`,
+    l2_sub:`Mago dos motores · Nürburgring 1969 · Alta Gracia`,
+    l3_sub:`Piloto de Fórmula 1 · Santa Fe`,
+    l5_sub:`Fundador da Pagani Automobili · Buenos Aires`,
+    con_eyebrow:`Fale conosco`, con_title:`Pronto para<br><em>cair na estrada?</em>`,
+    con_info:`Cada circuito é totalmente privado e sob medida para o seu grupo. Conte quem você é e quando vem — desenhamos a experiência ao seu redor.`,
+    con_label_email:`E-mail`, con_label_based:`Base`,
+    f_name:`Nome completo`, f_email:`E-mail`, f_phone:`Telefone / WhatsApp`, f_circuit:`Circuito de interesse`,
+    f_dates:`Datas estimadas da viagem`, f_message:`Mensagem`,
+    opt_select:`— Escolha um circuito —`, opt_fangio:`O Circuito Fangio`, opt_custom:`Personalizado / Vários`,
+    ph_name:`Seu nome`, ph_dates:`ex. Outubro 2026`, ph_message:`Conte sobre o seu grupo e o que você procura…`,
+    f_submit:`Enviar mensagem`, f_note:`Respondemos tão rápido quanto Fangio.`,
+    cta_eyebrow:`Experiências privadas`, cta_title:`Sua Argentina.<br><em>Seu ritmo.</em>`,
+    cta_p:`Grupos pequenos. Acesso privado. Sem concessões.<br>Feito para quem sabe a diferença.`,
+    cta_btn:`Planeje seu circuito`,
+    _title:`Torque & Taste — Experiências Automotivas Privadas na Argentina`,
+    _desc:`Experiências de viagem privadas e curadas sobre o automobilismo argentino — Fangio, Colapinto e as lendas do automobilismo. De Buenos Aires.`
+  },
+  en: {
+    nav_exp:`Experiences`, nav_cir:`Circuits`, nav_gal:`Gallery`, nav_leg:`Legacy`, nav_con:`Contact`,
+    nav_book:`Book Now`, float_book:`Book a Circuit`,
+    hero_eyebrow:`Private Automotive Experiences`,
+    hero_tagline:`Argentina <span>·</span> Cars <span>·</span> Flavors`,
+    hero_btn1:`Explore Circuits`, hero_btn2:`Plan Your Trip`,
+    strip_1:`Circuits`, strip_2:`Days from Buenos Aires`, strip_3:`Private &amp; Tailored`, strip_4:`Racing Legacy`,
+    about_eyebrow:`Who We Are`,
+    about_title:`Where the road<br>meets <em>the table</em>`,
+    about_lead:`Argentina's racing soul and its kitchens — on one private journey.`,
+    about_p1:`Torque &amp; Taste is a Buenos Aires–based travel experience company dedicated to the intersection of Argentina's extraordinary automotive heritage and its world-class gastronomy and wine culture.`,
+    about_p2:`Every circuit is private, fully curated, and designed for the discerning traveler who wants more than a museum ticket — they want the story, the road, and the flavor that comes with it.`,
+    about_quote:`"Argentina gave motorsport some of its greatest legends. We take you to where those legends were born."`,
+    exp_eyebrow:`What We Offer`,
+    exp_title:`Three pillars.<br><em>One experience.</em>`,
+    exp1_title:`Motor Heritage`,
+    exp1_desc:`Private access to workshops, museums, and historic circuits. Not as a tourist — as a guest with context and connection.`,
+    exp2_title:`Taste &amp; Territory`,
+    exp2_desc:`Regional producers, hidden parrillas, and chef-driven restaurants chosen for authenticity, not TripAdvisor ratings.`,
+    exp3_title:`Racing Legacy`,
+    exp3_desc:`Fangio. Reutemann. Colapinto. Argentina's contribution to motorsport history is extraordinary — and deeply personal. We bring that history to life.`,
+    cir_eyebrow:`Our Circuits`,
+    cir_title:`Three routes.<br><em>One Argentina.</em>`,
+    c_coming:`Coming 2026`, c_inquire:`Inquire for early access`, c_reserve:`Reserve this circuit <span>&#x2192;</span>`,
+    c1_tag:`Balcarce · Buenos Aires Province`, c1_name:`The Fangio<br>Circuit`, c1_sub:`Where a legend was born`,
+    c1_d1:`Juan Manuel Fangio Museum — 5x World Champion`,
+    c1_d2:`Private guided tour of the historic collection`,
+    c1_d3:`Crespi Competición — live racing parts factory`,
+    c1_d4:`Autódromo Juan Manuel Fangio — on-track experience`,
+    c1_d5:`El Casco de Fangio — boutique hotel &amp; dinner`,
+    c1_d6:`Seafood lunch on the Atlantic coast`,
+    c1_dur:`1–2 Days · Departs Buenos Aires`,
+    c2_tag:`Mendoza · Cuyo`,
+    c2_d1:`Classic car driving through the Andean foothills`,
+    c2_d2:`Private wine tasting at a boutique bodega in Valle de Uco`,
+    c2_d3:`Chef-driven lunch at Espacio Autiq`,
+    c2_d4:`Argentina's most iconic wine region — from behind the wheel`,
+    c2_dur:`1–2 Days · Mendoza`,
+    c3_tag:`Greater Buenos Aires`,
+    c3_d1:`Drive a Biscayne roadster from Bessia Motorsport's workshop`,
+    c3_d2:`Private visit to a world-class classic car collection`,
+    c3_d3:`Bodega Gamboa — private tasting &amp; lunch at Terruño restaurant`,
+    c3_dur:`1 Day · Departs Buenos Aires`,
+    gal_eyebrow:`Moments`, gal_title:`From the <em>road</em>.`,
+    gal_loading:`Loading photos…`, gal_empty:`More photos coming soon.`,
+    gal_error:`Couldn't load the photos right now. Please reload the page in a bit.`,
+    leg_eyebrow:`The Legacy`, leg_title:`Names that<br><em>shaped</em><br>motorsport.`,
+    leg_p:`Argentina produced some of the greatest drivers, engineers, and craftsmen in the history of motorsport. Our circuits are built around their stories.`,
+    l1_sub:`5&#x00D7; Formula 1 World Champion · Balcarce`,
+    l2_sub:`Engine Wizard · Nürburgring 1969 · Alta Gracia`,
+    l3_sub:`Formula 1 Driver · Santa Fe`,
+    l5_sub:`Founder of Pagani Automobili · Buenos Aires`,
+    con_eyebrow:`Get in Touch`, con_title:`Ready to<br><em>hit the road?</em>`,
+    con_info:`Every circuit is fully private and tailored to your group. Tell us who you are and when you're coming — we'll design the experience around you.`,
+    con_label_email:`Email`, con_label_based:`Based`,
+    f_name:`Full Name`, f_email:`Email`, f_phone:`Phone / WhatsApp`, f_circuit:`Circuit of Interest`,
+    f_dates:`Estimated Travel Dates`, f_message:`Message`,
+    opt_select:`— Select a circuit —`, opt_fangio:`The Fangio Circuit`, opt_custom:`Custom / Multiple`,
+    ph_name:`Your name`, ph_dates:`e.g. October 2026`, ph_message:`Tell us about your group and what you're looking for…`,
+    f_submit:`Send Message`, f_note:`We'll get back to you as fast as Fangio.`,
+    cta_eyebrow:`Private Experiences`, cta_title:`Your Argentina.<br><em>Your pace.</em>`,
+    cta_p:`Small groups. Private access. No compromises.<br>Designed for those who know the difference.`,
+    cta_btn:`Plan Your Circuit`,
+    _title:`Torque & Taste — Private Automotive Experiences in Argentina`,
+    _desc:`Private curated automotive travel experiences in Argentina — Fangio, Colapinto, and the legends of Argentine motorsport. From Buenos Aires.`
+  }
+};
+function ttGet(key){
+  var l = window.__lang || 'en';
+  if (I18N[l] && I18N[l][key] != null) return I18N[l][key];
+  return (I18N.en[key] != null) ? I18N.en[key] : null;
+}
+window.tI18N = ttGet;
+function applyLang(lang){
+  if (!I18N[lang]) lang = 'en';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var v = ttGet(el.getAttribute('data-i18n'));
+    if (v != null) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+    var v = ttGet(el.getAttribute('data-i18n-ph'));
+    if (v != null) el.setAttribute('placeholder', v);
+  });
+  var d = I18N[lang];
+  if (d._title) document.title = d._title;
+  if (d._desc){ var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', d._desc); }
+  document.querySelectorAll('[data-langswitch] button').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('tt_lang', lang); } catch(e){}
+}
+function detectLang(){
+  try { var s = localStorage.getItem('tt_lang'); if (s && I18N[s]) return s; } catch(e){}
+  var langs = navigator.languages || [navigator.language || 'en'];
+  for (var i=0;i<langs.length;i++){
+    var p = (langs[i]||'').toLowerCase().split('-')[0];
+    if (p==='es') return 'es';
+    if (p==='pt') return 'pt';
+    if (p==='en') return 'en';
+  }
+  return 'en';
+}
+document.querySelectorAll('[data-langswitch] button').forEach(function(b){
+  b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+});
+applyLang(detectLang());
+
 /* ---- Galería: se llena sola con lo que haya en la carpeta fotos/galeria/ ---- */
 (function(){
   const REPO = '404mqs/torque-and-taste';
@@ -689,7 +963,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   function render(files){
-    if (!files.length){ grid.innerHTML = '<p class="gallery-msg">Pronto sumaremos fotos.</p>'; return; }
+    if (!files.length){ grid.innerHTML = '<p class="gallery-msg">' + (window.tI18N ? window.tI18N('gal_empty') : 'More photos coming soon.') + '</p>'; return; }
     grid.innerHTML = '';
     files.forEach(function(name, i){
       const cap = tituloDesdeNombre(name);
@@ -711,7 +985,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   obtenerLista()
     .then(render)
     .catch(function(){
-      grid.innerHTML = '<p class="gallery-msg">No se pudieron cargar las fotos en este momento. Probá recargar la página en un rato.</p>';
+      grid.innerHTML = '<p class="gallery-msg">' + (window.tI18N ? window.tI18N('gal_error') : 'Could not load the photos right now.') + '</p>';
     });
 
   // Lightbox (ver foto en grande)
