@@ -149,6 +149,7 @@ body.menu-open .mobile-menu{opacity:1;visibility:visible}
 .circuit-link span{transition:transform .3s;display:inline-block}
 .circuit-link:hover span{transform:translateX(5px)}
 .circuit-coming-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-style:italic}
+.circuit-conditions{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);line-height:1.7}
 .circuit-card.coming-soon .circuit-details li{opacity:0.65}
 
 /* GALLERY */
@@ -435,16 +436,13 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
       </div>
     </div>
 
-    <!-- CIRCUIT 02 — MENDOZA / AUTIQ (COMING SOON) -->
-    <div class="circuit-card coming-soon reveal">
+    <!-- CIRCUIT 02 — MENDOZA / AUTIQ (ACTIVE) -->
+    <div class="circuit-card reveal">
       <div class="circuit-photo">
         <!-- FOTO DEL CIRCUITO: para poner/cambiar la foto, subí una imagen llamada "mendoza.jpg" a la carpeta fotos/ -->
         <img src="fotos/mendoza.jpg" alt="Wine &amp; Wheels — Mendoza" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="circuit-photo-placeholder" style="display:none"><span>02</span></div>
-        <div class="circuit-photo-overlay">
-          <div class="coming-soon-badge" data-i18n="c_coming">Coming 2026</div>
-        </div>
       </div>
       <div class="circuit-num">02</div>
       <div class="circuit-body">
@@ -452,14 +450,15 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
         <div class="circuit-name">Wine &amp; Wheels</div>
         <div class="circuit-sub">Ruta Malbec &amp; Motor</div>
         <ul class="circuit-details">
-          <li data-i18n="c2_d1">Classic car driving through the Andean foothills</li>
-          <li data-i18n="c2_d2">Private wine tasting at a boutique bodega in Valle de Uco</li>
-          <li data-i18n="c2_d3">Chef-driven lunch at Espacio Autiq</li>
-          <li data-i18n="c2_d4">Argentina's most iconic wine region — at the wheel</li>
+          <li data-i18n="c2_d1">Classic cars along Rutas 60 &amp; 7, through the vineyards</li>
+          <li data-i18n="c2_d2">Visit &amp; tasting at Bodega Séptima (Grupo Codorníu)</li>
+          <li data-i18n="c2_d3">Top-tier gastronomy lunch at Espacio Autiq</li>
+          <li data-i18n="c2_d4">Day 2 · 7-course lunch at Casa Vigil — Michelin-starred</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration" data-i18n="c2_dur">1–2 Days · Mendoza</div>
-          <p class="circuit-coming-label" data-i18n="c_inquire">Inquire for early access</p>
+          <div class="circuit-duration" data-i18n="c2_dur">2 Days · 1 Night · Mendoza</div>
+          <p class="circuit-conditions" data-i18n="c2_cond">Minimum 8 guests · Ask about hotel options</p>
+          <a href="#contact" class="circuit-link" data-circuit="mendoza" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
         </div>
       </div>
     </div>
@@ -718,11 +717,12 @@ const I18N = {
     c1_d6:`Visita a Bodegas y Viñedos Balcarce. Degustación de vinos y empanadas`,
     c1_dur:`1–2 días · Sale de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
-    c2_d1:`Manejo de autos clásicos por la precordillera andina`,
-    c2_d2:`Degustación de vinos en una exclusiva bodega en Luján de Cuyo`,
-    c2_d3:`Almuerzo de autor en Espacio Autiq`,
-    c2_d4:`La región vitivinícola más icónica de Argentina, al volante`,
-    c2_dur:`1–2 días · Mendoza`,
+    c2_d1:`Autos clásicos por Ruta 60 y Ruta 7, entre viñedos`,
+    c2_d2:`Visita y degustación en Bodega Séptima (Grupo Codorníu)`,
+    c2_d3:`Almuerzo de primer nivel en Espacio Autiq`,
+    c2_d4:`Día 2 · Almuerzo de 7 pasos en Casa Vigil — estrella Michelin`,
+    c2_dur:`2 días · 1 noche · Mendoza`,
+    c2_cond:`Base mínima 8 personas · Consultá por opciones de hoteles`,
     c3_tag:`Gran Buenos Aires`,
     c3_d1:`Manejá un roadster Biscayne del taller de Bessia Motorsport`,
     c3_d2:`Sé testigo de la construcción de un roadster legendario`,
@@ -784,11 +784,12 @@ const I18N = {
     c1_d6:`Visita à Bodegas y Viñedos Balcarce. Degustação de vinhos e empanadas`,
     c1_dur:`1–2 dias · Saída de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
-    c2_d1:`Direção de carros clássicos pelas encostas dos Andes`,
-    c2_d2:`Degustação de vinhos em uma exclusiva bodega em Luján de Cuyo`,
-    c2_d3:`Almoço autoral no Espacio Autiq`,
-    c2_d4:`A região vinícola mais icônica da Argentina, ao volante`,
-    c2_dur:`1–2 dias · Mendoza`,
+    c2_d1:`Carros clássicos pela Ruta 60 e Ruta 7, entre vinhedos`,
+    c2_d2:`Visita e degustação na Bodega Séptima (Grupo Codorníu)`,
+    c2_d3:`Almoço de primeiro nível no Espacio Autiq`,
+    c2_d4:`Dia 2 · Almoço de 7 tempos na Casa Vigil — estrela Michelin`,
+    c2_dur:`2 dias · 1 noite · Mendoza`,
+    c2_cond:`Base mínima de 8 pessoas · Consulte opções de hotéis`,
     c3_tag:`Grande Buenos Aires`,
     c3_d1:`Dirija um roadster Biscayne da oficina da Bessia Motorsport`,
     c3_d2:`Seja testemunha da construção de um roadster lendário`,
@@ -850,11 +851,12 @@ const I18N = {
     c1_d6:`Visit to Bodegas y Viñedos Balcarce. Wine and empanadas tasting`,
     c1_dur:`1–2 Days · Departs Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
-    c2_d1:`Classic car driving through the Andean foothills`,
-    c2_d2:`Wine tasting at an exclusive bodega in Luján de Cuyo`,
-    c2_d3:`Chef-driven lunch at Espacio Autiq`,
-    c2_d4:`Argentina's most iconic wine region — at the wheel`,
-    c2_dur:`1–2 Days · Mendoza`,
+    c2_d1:`Classic cars along Rutas 60 & 7, through the vineyards`,
+    c2_d2:`Visit & tasting at Bodega Séptima (Grupo Codorníu)`,
+    c2_d3:`Top-tier gastronomy lunch at Espacio Autiq`,
+    c2_d4:`Day 2 · 7-course lunch at Casa Vigil — Michelin-starred`,
+    c2_dur:`2 Days · 1 Night · Mendoza`,
+    c2_cond:`Minimum 8 guests · Ask about hotel options`,
     c3_tag:`Greater Buenos Aires`,
     c3_d1:`Drive a Biscayne roadster from Bessia Motorsport's workshop`,
     c3_d2:`Witness the construction of a legendary roadster`,
