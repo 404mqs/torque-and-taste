@@ -954,11 +954,22 @@ applyLang(detectLang());
     } catch(e){}
     const res = await fetch(MANIFEST, { cache: 'no-cache' });
     if (!res.ok) throw new Error('manifest ' + res.status);
-    const data = await res.json();
+    const raw = await res.text();
     // Acepta ["foto.jpg", ...] o { "files": ["foto.jpg", ...] }
-    const lista = Array.isArray(data) ? data : (data && Array.isArray(data.files) ? data.files : []);
+    let lista = [];
+    try {
+      const data = JSON.parse(raw);
+      lista = Array.isArray(data) ? data : (data && Array.isArray(data.files) ? data.files : []);
+      lista = lista.filter(function(name){ return typeof name === 'string'; });
+    } catch(e){ /* JSON mal escrito (falta una coma, etc.): usamos el rescate de abajo */ }
+    // Rescate a prueba de errores: si el JSON falló o quedó vacío, sacamos los nombres
+    // de foto directamente del texto. Así, si se come una coma o una comilla, igual anda.
+    if (!lista.length){
+      lista = raw.match(/[\w.\-]+\.(?:jpe?g|png|webp|gif|avif)/gi) || [];
+    }
     const files = lista
-      .filter(function(name){ return typeof name === 'string' && /\.(jpe?g|png|webp|gif|avif)$/i.test(name); })
+      .filter(function(name){ return /\.(jpe?g|png|webp|gif|avif)$/i.test(name); })
+      .filter(function(name, i, arr){ return arr.indexOf(name) === i; }) // sin duplicados
       .sort();
     try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), files: files })); } catch(e){}
     return files;
