@@ -430,7 +430,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
           <li data-i18n="c1_d6">Seafood lunch on the Atlantic coast</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration" data-i18n="c1_dur">1–2 Days · Departs Buenos Aires</div>
+          <div class="circuit-duration" data-i18n="c1_dur">2 Days · 1 Night · Departs Buenos Aires</div>
           <a href="#contact" class="circuit-link" data-circuit="fangio" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
         </div>
       </div>
@@ -715,7 +715,7 @@ const I18N = {
     c1_d4:`Vista al Autódromo Juan Manuel Fangio`,
     c1_d5:`El Casco de Fangio — hotel boutique y cena`,
     c1_d6:`Visita a Bodegas y Viñedos Balcarce. Degustación de vinos y empanadas`,
-    c1_dur:`1–2 días · Sale de Buenos Aires`,
+    c1_dur:`2 días · 1 noche · Sale de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Autos clásicos por Ruta 60 y Ruta 7, entre viñedos`,
     c2_d2:`Visita y degustación en Bodega Séptima (Grupo Codorníu)`,
@@ -782,7 +782,7 @@ const I18N = {
     c1_d4:`Visita ao Autódromo Juan Manuel Fangio`,
     c1_d5:`El Casco de Fangio — hotel boutique e jantar`,
     c1_d6:`Visita à Bodegas y Viñedos Balcarce. Degustação de vinhos e empanadas`,
-    c1_dur:`1–2 dias · Saída de Buenos Aires`,
+    c1_dur:`2 dias · 1 noite · Saída de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Carros clássicos pela Ruta 60 e Ruta 7, entre vinhedos`,
     c2_d2:`Visita e degustação na Bodega Séptima (Grupo Codorníu)`,
@@ -849,7 +849,7 @@ const I18N = {
     c1_d4:`Visit to the Autódromo Juan Manuel Fangio`,
     c1_d5:`El Casco de Fangio — boutique hotel &amp; dinner`,
     c1_d6:`Visit to Bodegas y Viñedos Balcarce. Wine and empanadas tasting`,
-    c1_dur:`1–2 Days · Departs Buenos Aires`,
+    c1_dur:`2 Days · 1 Night · Departs Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Classic cars along Rutas 60 & 7, through the vineyards`,
     c2_d2:`Visit & tasting at Bodega Séptima (Grupo Codorníu)`,
@@ -930,10 +930,9 @@ applyLang(detectLang());
 
 /* ---- Galería: se llena sola con lo que haya en la carpeta fotos/galeria/ ---- */
 (function(){
-  const REPO = '404mqs/torque-and-taste';
   const FOLDER = 'fotos/galeria';
-  const API = 'https://api.github.com/repos/' + REPO + '/contents/' + FOLDER;
-  const CACHE_KEY = 'tt_galeria_v2';
+  const MANIFEST = FOLDER + '/manifest.json'; // lista propia (mismo dominio, sin límite de la API de GitHub)
+  const CACHE_KEY = 'tt_galeria_v3';
   const CACHE_TTL = 30 * 60 * 1000; // 30 minutos
   const grid = document.getElementById('galleryGrid');
   if (!grid) return;
@@ -953,12 +952,13 @@ applyLang(detectLang());
       const c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
       if (c && (Date.now() - c.t) < CACHE_TTL && Array.isArray(c.files)) return c.files;
     } catch(e){}
-    const res = await fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } });
-    if (!res.ok) throw new Error('GitHub API ' + res.status);
+    const res = await fetch(MANIFEST, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('manifest ' + res.status);
     const data = await res.json();
-    const files = data
-      .filter(function(f){ return f.type === 'file' && /\.(jpe?g|png|webp|gif|avif)$/i.test(f.name); })
-      .map(function(f){ return f.name; })
+    // Acepta ["foto.jpg", ...] o { "files": ["foto.jpg", ...] }
+    const lista = Array.isArray(data) ? data : (data && Array.isArray(data.files) ? data.files : []);
+    const files = lista
+      .filter(function(name){ return typeof name === 'string' && /\.(jpe?g|png|webp|gif|avif)$/i.test(name); })
       .sort();
     try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), files: files })); } catch(e){}
     return files;
