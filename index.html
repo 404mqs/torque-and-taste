@@ -462,25 +462,29 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
       </div>
     </div>
 
-    <!-- CIRCUIT 03 — NUEVO CIRCUITO (SECRETO / COMING SOON) -->
-    <div class="circuit-card coming-soon reveal">
+    <!-- CIRCUIT 03 — HAND-BUILT HERITAGE (ACTIVE) -->
+    <div class="circuit-card reveal">
       <div class="circuit-photo">
-        <!-- Sin foto a propósito: el 3er circuito es secreto hasta el lanzamiento -->
-        <div class="circuit-photo-placeholder"><span>03</span></div>
-        <div class="circuit-photo-overlay">
-          <div class="coming-soon-badge" data-i18n="c_coming">Coming 2026</div>
-        </div>
+        <!-- FOTO DEL CIRCUITO: subida como "buenosaires2.jpeg" a la carpeta fotos/ -->
+        <img src="fotos/buenosaires2.jpeg" alt="Hand-Built Heritage — Rueda Inglesa &amp; Hangar Motorsport" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="circuit-photo-placeholder" style="display:none"><span>03</span></div>
       </div>
       <div class="circuit-num">03</div>
       <div class="circuit-body">
-        <div class="circuit-tag" data-i18n="c3_tag">Greater Buenos Aires</div>
-        <div class="circuit-name" data-i18n="c3_name">New<br>Circuit</div>
+        <div class="circuit-tag" data-i18n="c3_tag">Buenos Aires · Tigre &amp; Olivos</div>
+        <div class="circuit-name" data-i18n="c3_name">Hand-Built<br>Heritage</div>
+        <div class="circuit-sub" data-i18n="c3_sub">Hand-built cars, racing history &amp; the Buenos Aires table</div>
         <ul class="circuit-details">
-          <li data-i18n="c3_teaser">A new experience in the making — details revealed soon.</li>
+          <li data-i18n="c3_d1">Rueda Inglesa — hand-built aluminum racing replicas, Tigre</li>
+          <li data-i18n="c3_d2">Hangar Motorsport — Lotus Seven replicas, Olivos</li>
+          <li data-i18n="c3_d3">Lunch at a top Palermo parrilla (not included)</li>
+          <li data-i18n="c3_d4">Museum visit guided by Lean — Museo del ACA / Museo del Automóvil, depending on day</li>
+          <li data-i18n="c3_d5">Private transfer all day, T&amp;T welcome gift</li>
         </ul>
         <div class="circuit-foot">
-          <div class="circuit-duration" data-i18n="c3_dur">Departs Buenos Aires</div>
-          <p class="circuit-coming-label" data-i18n="c_inquire">Inquire for early access</p>
+          <div class="circuit-duration" data-i18n="c3_dur">1 Day · Monday–Saturday · Departs Buenos Aires</div>
+          <a href="#contact" class="circuit-link" data-circuit="bsas-heritage" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
         </div>
       </div>
     </div>
@@ -587,7 +591,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
           <option value="" data-i18n="opt_select">— Select a circuit —</option>
           <option value="fangio" data-i18n="opt_fangio">The Fangio Circuit</option>
           <option value="mendoza">Wine &amp; Wheels — Mendoza</option>
-          <option value="new-circuit" data-i18n="opt_new">New Circuit — Coming 2026</option>
+          <option value="bsas-heritage" data-i18n="opt_new">Hand-Built Heritage</option>
           <option value="custom" data-i18n="opt_custom">Custom / Multiple</option>
         </select>
       </div>
@@ -716,10 +720,15 @@ const I18N = {
     c2_d4:`Día 2 · Almuerzo de 7 pasos en Casa Vigil — estrella Michelin`,
     c2_dur:`2 días · 1 noche · Mendoza`,
     c2_cond:`Base mínima 8 personas · Consultá por opciones de hoteles`,
-    c3_tag:`Gran Buenos Aires`,
-    c3_name:`Nuevo<br>Circuito`,
-    c3_teaser:`Una nueva experiencia en preparación — detalles muy pronto.`,
-    c3_dur:`Sale de Buenos Aires`,
+    c3_tag:`Buenos Aires · Tigre y Olivos`,
+    c3_name:`Hand-Built<br>Heritage`,
+    c3_sub:`Autos hechos a mano, historia de carreras y la mesa porteña`,
+    c3_d1:`Rueda Inglesa — réplicas de carrera en aluminio hechas a mano, Tigre`,
+    c3_d2:`Hangar Motorsport — réplicas de Lotus Seven, Olivos`,
+    c3_d3:`Almuerzo en una parrilla de alto nivel en Palermo (no incluido)`,
+    c3_d4:`Visita a museo guiada por Lean — Museo del ACA / Museo del Automóvil, según el día`,
+    c3_d5:`Traslado privado todo el día, regalo de bienvenida T&amp;T`,
+    c3_dur:`1 Día · Lunes a Sábado · Sale de Buenos Aires`,
     gal_eyebrow:`Momentos`, gal_title:`Desde el <em>camino</em>.`,
     gal_loading:`Cargando fotos…`, gal_empty:`Pronto sumaremos más fotos.`,
     gal_error:`No se pudieron cargar las fotos en este momento. Probá recargar la página en un rato.`,
@@ -734,7 +743,7 @@ const I18N = {
     con_label_email:`Email`, con_label_based:`Base`,
     f_name:`Nombre completo`, f_email:`Email`, f_phone:`Teléfono / WhatsApp`, f_circuit:`Circuito de interés`,
     f_dates:`Fechas estimadas de viaje`, f_message:`Mensaje`,
-    opt_select:`— Elegí un circuito —`, opt_fangio:`El Circuito Fangio`, opt_new:`Nuevo Circuito — Próximamente 2026`, opt_custom:`Personalizado / Varios`,
+    opt_select:`— Elegí un circuito —`, opt_fangio:`El Circuito Fangio`, opt_new:`Hand-Built Heritage`, opt_custom:`Personalizado / Varios`,
     ph_name:`Tu nombre`, ph_dates:`ej. Octubre 2026`, ph_message:`Contanos sobre tu grupo y qué estás buscando…`,
     f_submit:`Enviar mensaje`, f_note:`Te respondemos tan rápido como Fangio.`,
     cta_eyebrow:`Experiencias privadas`, cta_title:`Tu Argentina.<br><em>Tu ritmo.</em>`,
@@ -781,10 +790,15 @@ const I18N = {
     c2_d4:`Dia 2 · Almoço de 7 tempos na Casa Vigil — estrela Michelin`,
     c2_dur:`2 dias · 1 noite · Mendoza`,
     c2_cond:`Base mínima de 8 pessoas · Consulte opções de hotéis`,
-    c3_tag:`Grande Buenos Aires`,
-    c3_name:`Novo<br>Circuito`,
-    c3_teaser:`Uma nova experiência em preparação — detalhes em breve.`,
-    c3_dur:`Saída de Buenos Aires`,
+    c3_tag:`Buenos Aires · Tigre e Olivos`,
+    c3_name:`Hand-Built<br>Heritage`,
+    c3_sub:`Carros feitos à mão, história automobilística e a mesa portenha`,
+    c3_d1:`Rueda Inglesa — réplicas de corrida em alumínio feitas à mão, Tigre`,
+    c3_d2:`Hangar Motorsport — réplicas de Lotus Seven, Olivos`,
+    c3_d3:`Almoço em uma churrascaria de alto nível em Palermo (não incluído)`,
+    c3_d4:`Visita ao museu guiada por Lean — Museo del ACA / Museo del Automóvil, conforme o dia`,
+    c3_d5:`Traslado privado o dia todo, presente de boas-vindas T&amp;T`,
+    c3_dur:`1 Dia · Segunda a Sábado · Saída de Buenos Aires`,
     gal_eyebrow:`Momentos`, gal_title:`Da <em>estrada</em>.`,
     gal_loading:`Carregando fotos…`, gal_empty:`Em breve mais fotos.`,
     gal_error:`Não foi possível carregar as fotos agora. Tente recarregar a página em instantes.`,
@@ -799,7 +813,7 @@ const I18N = {
     con_label_email:`E-mail`, con_label_based:`Base`,
     f_name:`Nome completo`, f_email:`E-mail`, f_phone:`Telefone / WhatsApp`, f_circuit:`Circuito de interesse`,
     f_dates:`Datas estimadas da viagem`, f_message:`Mensagem`,
-    opt_select:`— Escolha um circuito —`, opt_fangio:`O Circuito Fangio`, opt_new:`Novo Circuito — Em breve 2026`, opt_custom:`Personalizado / Vários`,
+    opt_select:`— Escolha um circuito —`, opt_fangio:`O Circuito Fangio`, opt_new:`Hand-Built Heritage`, opt_custom:`Personalizado / Vários`,
     ph_name:`Seu nome`, ph_dates:`ex. Outubro 2026`, ph_message:`Conte sobre o seu grupo e o que você procura…`,
     f_submit:`Enviar mensagem`, f_note:`Respondemos tão rápido quanto Fangio.`,
     cta_eyebrow:`Experiências privadas`, cta_title:`Sua Argentina.<br><em>Seu ritmo.</em>`,
@@ -846,10 +860,15 @@ const I18N = {
     c2_d4:`Day 2 · 7-course lunch at Casa Vigil — Michelin-starred`,
     c2_dur:`2 Days · 1 Night · Mendoza`,
     c2_cond:`Minimum 8 guests · Ask about hotel options`,
-    c3_tag:`Greater Buenos Aires`,
-    c3_name:`New<br>Circuit`,
-    c3_teaser:`A new experience in the making — details revealed soon.`,
-    c3_dur:`Departs Buenos Aires`,
+    c3_tag:`Buenos Aires · Tigre &amp; Olivos`,
+    c3_name:`Hand-Built<br>Heritage`,
+    c3_sub:`Hand-built cars, racing history &amp; the Buenos Aires table`,
+    c3_d1:`Rueda Inglesa — hand-built aluminum racing replicas, Tigre`,
+    c3_d2:`Hangar Motorsport — Lotus Seven replicas, Olivos`,
+    c3_d3:`Lunch at a top Palermo parrilla (not included)`,
+    c3_d4:`Museum visit guided by Lean — Museo del ACA / Museo del Automóvil, depending on day`,
+    c3_d5:`Private transfer all day, T&amp;T welcome gift`,
+    c3_dur:`1 Day · Monday–Saturday · Departs Buenos Aires`,
     gal_eyebrow:`Moments`, gal_title:`From the <em>road</em>.`,
     gal_loading:`Loading photos…`, gal_empty:`More photos coming soon.`,
     gal_error:`Couldn't load the photos right now. Please reload the page in a bit.`,
@@ -864,7 +883,7 @@ const I18N = {
     con_label_email:`Email`, con_label_based:`Based`,
     f_name:`Full Name`, f_email:`Email`, f_phone:`Phone / WhatsApp`, f_circuit:`Circuit of Interest`,
     f_dates:`Estimated Travel Dates`, f_message:`Message`,
-    opt_select:`— Select a circuit —`, opt_fangio:`The Fangio Circuit`, opt_new:`New Circuit — Coming 2026`, opt_custom:`Custom / Multiple`,
+    opt_select:`— Select a circuit —`, opt_fangio:`The Fangio Circuit`, opt_new:`Hand-Built Heritage`, opt_custom:`Custom / Multiple`,
     ph_name:`Your name`, ph_dates:`e.g. October 2026`, ph_message:`Tell us about your group and what you're looking for…`,
     f_submit:`Send Message`, f_note:`We'll get back to you as fast as Fangio.`,
     cta_eyebrow:`Private Experiences`, cta_title:`Your Argentina.<br><em>Your pace.</em>`,
