@@ -77,9 +77,8 @@ una grilla con lo que encuentre. Detalles:
 
 ### 3. Google Analytics (GA4)
 
-- Snippet en el `<head>`, **inerte** hasta cargar el ID real en `window.GA_MEASUREMENT_ID`
-  (placeholder actual: `G-XXXXXXXXXX`). Cuando se ponga el ID (formato `G-XXXXXXXXXX`),
-  empieza a medir solo.
+- Snippet en el `<head>`, **activo** desde el 2026-08-03 con el ID `G-8V8QXW50Y7`
+  (cuenta creada por Leandro). El snippet queda inerte si el ID vuelve a tener `XXXX`.
 - Sin cartelito de cookies por ahora (sitio personal, riesgo bajo). Alternativa cookieless
   posible: Cloudflare Web Analytics.
 
