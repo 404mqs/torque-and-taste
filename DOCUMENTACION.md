@@ -28,8 +28,11 @@ fotos/
   hero.jpg              # fondo del hero (nombre fijo)
   fangio.jpg            # foto circuito Fangio (nombre fijo)
   mendoza.jpg           # foto circuito Wine & Wheels (nombre fijo)
-  biscayne.jpg          # foto circuito Biscayne (nombre fijo)
-  galeria/             # galería "From the Road": se llena sola con lo que haya acá
+  buenosaires.jpg       # foto circuito Hand-Built Heritage (nombre fijo)
+  anexo-crespi.jpg      # foto anexo Serie Senna & FC-1 (nombre fijo)
+  anexo-pacho.jpg       # foto anexo Performance Driving (nombre fijo)
+  galeria/             # galería "From the Road": listada en manifest.json
+    manifest.json      # ⚠️ la galería lee ESTA lista, no la carpeta
     *.jpg
 guia/                   # (local, gitignored) guía PDF + instrucciones para el papá
 preview/                # (local, gitignored) capturas/scratch de verificación
@@ -82,7 +85,34 @@ una grilla con lo que encuentre. Detalles:
 - Sin cartelito de cookies por ahora (sitio personal, riesgo bajo). Alternativa cookieless
   posible: Cloudflare Web Analytics.
 
-### 4. Hero con foto
+### 4. Anexo · Driving Experiences (sección `#annex`)
+
+Sección propia entre **Circuitos** y **Galería**, con dos tarjetas de actividades de medio día
+(add-ons, no circuitos). Sin precios: el CTA es "Consultar disponibilidad" y apunta al formulario.
+
+- **Tarjeta 1 — Serie Senna & FC-1** (Crespi, Autódromo Juan Manuel Fangio, Balcarce).
+  Add-on del Circuito Fangio. Foto: `fotos/anexo-crespi1.jpeg`
+  (`anexo-crespi2.jpeg` está subida pero sin usar, es la alternativa con el FC-1).
+- **Tarjeta 2 — Performance Driving** (Ariel Pacho, autódromos Gálvez y La Plata/Mouras).
+  Add-on de Hand-Built Heritage. Foto: `fotos/anexo-pacho.jpeg`.
+
+**Cómo se muestran las fotos del anexo**: el slot mide **340px de alto** (más que los 220px de las
+tarjetas de circuito) y usa `object-fit:cover` — la foto llena todo el cuadro, sin bandas negras.
+La de Pacho es vertical, así que lleva un `style="object-position:center 45%"` inline para que el
+recorte deje el auto completo y no corte el techo. Si se reemplaza por una foto horizontal, se
+puede sacar ese `style`.
+
+Enganches con el resto de la página:
+- Link `Anexo` en el menú desktop y mobile (`nav_anx`).
+- Línea "Add-on disponible → " dentro de las tarjetas de circuito Fangio (`c1_addon`) y
+  Hand-Built Heritage (`c3_addon`), ancla a `#annex`.
+- Dos opciones nuevas en el `<select>` del formulario: `annex-crespi` y `annex-pacho`. El JS de
+  `.circuit-link` las autoselecciona al hacer clic en el CTA de cada tarjeta.
+
+Claves i18n: `nav_anx`, `anx_*`, `a1_*`, `a2_*`, `a_ask`, `c1_addon`, `c3_addon`,
+`opt_anx_crespi`, `opt_anx_pacho` — las tres en ES/PT/EN.
+
+### 5. Hero con foto
 
 - El hero usa `fotos/hero.jpg` como fondo, con un degradado oscuro doble (más fuerte arriba,
   detrás del menú, y a la izquierda, donde va el título) para que el texto se lea. Punto focal
