@@ -151,6 +151,38 @@ body.menu-open .mobile-menu{opacity:1;visibility:visible}
 .circuit-coming-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-style:italic}
 .circuit-conditions{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);line-height:1.7}
 .circuit-card.coming-soon .circuit-details li{opacity:0.65}
+.circuit-addon{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;line-height:1.7;transition:color .3s}
+.circuit-addon:hover{color:var(--gold)}
+.circuit-addon span{transition:transform .3s;display:inline-block}
+.circuit-addon:hover span{transform:translateX(4px)}
+
+/* ---- Anexo · Driving Experiences ---- */
+.annex{padding:10rem 4rem;background:var(--dark2);border-top:0.5px solid var(--border-soft);border-bottom:0.5px solid var(--border-soft)}
+.annex-header{margin-bottom:4rem}
+.annex-intro{font-size:0.9rem;color:var(--muted);line-height:1.9;max-width:620px}
+.annex-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.annex-card{border:0.5px solid var(--border);background:var(--dark);display:flex;flex-direction:column;overflow:hidden;position:relative;transition:transform .35s,border-color .35s}
+.annex-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;z-index:3}
+.annex-card:hover::before{transform:scaleX(1)}
+.annex-card:hover{border-color:rgba(201,164,82,0.5);transform:translateY(-4px)}
+.annex-photo{width:100%;height:340px;position:relative;overflow:hidden;background:var(--dark3);flex-shrink:0}
+.annex-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.78) saturate(0.9);transition:transform .6s ease,filter .6s ease}
+.annex-card:hover .annex-photo img{transform:scale(1.05);filter:brightness(0.9) saturate(1)}
+.annex-photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark3) 0%,rgba(201,164,82,0.04) 100%)}
+.annex-photo-placeholder span{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:6px;color:rgba(201,164,82,0.12)}
+.annex-badge{position:absolute;top:1rem;left:1rem;z-index:2;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--dark);background:var(--gold);padding:.4rem .8rem;font-weight:600}
+.annex-body{padding:2.5rem;display:flex;flex-direction:column;flex:1}
+.annex-tag{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;line-height:1.7}
+.annex-name{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;line-height:1;letter-spacing:1px;margin-bottom:0.5rem}
+.annex-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--muted);letter-spacing:1px;font-style:italic;margin-bottom:2rem}
+.annex-details{list-style:none;margin-bottom:1.8rem}
+.annex-details li{font-size:0.8rem;color:var(--muted);padding:0.6rem 0 0.6rem 1rem;border-bottom:0.5px solid var(--border-soft);position:relative;line-height:1.6}
+.annex-details li::before{content:'—';position:absolute;left:0;color:rgba(201,164,82,0.4)}
+.annex-specs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.annex-spec{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);border:0.5px solid var(--border-soft);padding:.45rem .7rem}
+.annex-foot{margin-top:auto;display:flex;flex-direction:column;gap:1.2rem}
+.annex-meta{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);line-height:1.7}
+.annex-note{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);line-height:1.8}
 
 /* GALLERY */
 .gallery{padding:10rem 4rem;background:var(--dark)}
@@ -265,6 +297,9 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
   .exp-grid{grid-template-columns:1fr}
   .circuits{padding:6rem 1.5rem}
   .circuits-grid{grid-template-columns:1fr}
+  .annex{padding:6rem 1.5rem}
+  .annex-grid{grid-template-columns:1fr}
+  .annex-body{padding:2rem}
   .gallery{padding:6rem 1.5rem}
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
   .gallery-cap{opacity:1;transform:none;font-size:0.58rem;letter-spacing:1px;padding:1rem 0.6rem 0.6rem}
@@ -308,6 +343,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
   <div class="nav-links">
     <a href="#experiences" data-i18n="nav_exp">Experiences</a>
     <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+    <a href="#annex" data-i18n="nav_anx">Annex</a>
     <a href="#gallery" data-i18n="nav_gal">Gallery</a>
     <a href="#legacy" data-i18n="nav_leg">Legacy</a>
     <a href="#contact" data-i18n="nav_con">Contact</a>
@@ -326,6 +362,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
 <div class="mobile-menu" id="mobileMenu">
   <a href="#experiences" data-i18n="nav_exp">Experiences</a>
   <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+  <a href="#annex" data-i18n="nav_anx">Annex</a>
   <a href="#gallery" data-i18n="nav_gal">Gallery</a>
   <a href="#legacy" data-i18n="nav_leg">Legacy</a>
   <a href="#contact" data-i18n="nav_con">Contact</a>
@@ -444,10 +481,12 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
           <li data-i18n="c1_d2">Private guided tour of the historic collection</li>
           <li data-i18n="c1_d3">Crespi Competición — live racing parts factory</li>
           <li data-i18n="c1_d4">Autódromo Juan Manuel Fangio — on-track experience</li>
-          <li data-i18n="c1_d6">Seafood lunch on the Atlantic coast</li>
+          <li data-i18n="c1_d6">Visit to Bodega Costa y Pampa (Trapiche) in Mar del Plata</li>
+          <li data-i18n="c1_d7">5-star hotel in Mar del Plata</li>
         </ul>
         <div class="circuit-foot">
           <div class="circuit-duration" data-i18n="c1_dur">2 Days · 1 Night · Departs Buenos Aires</div>
+          <a href="#annex" class="circuit-addon" data-i18n="c1_addon">Add-on available: Senna Series &amp; FC-1 at Balcarce <span>&#x2192;</span></a>
           <a href="#contact" class="circuit-link" data-circuit="fangio" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
         </div>
       </div>
@@ -502,7 +541,88 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
         </ul>
         <div class="circuit-foot">
           <div class="circuit-duration" data-i18n="c3_dur">1 Day · Monday–Saturday · Departs Buenos Aires</div>
+          <a href="#annex" class="circuit-addon" data-i18n="c3_addon">Add-on available: Performance Driving with Ariel Pacho <span>&#x2192;</span></a>
           <a href="#contact" class="circuit-link" data-circuit="bsas-heritage" data-i18n="c_reserve">Reserve this circuit <span>&#x2192;</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ANEXO · DRIVING EXPERIENCES ============ -->
+<section class="annex" id="annex">
+  <div class="annex-header reveal">
+    <p class="section-eyebrow" data-i18n="anx_eyebrow">Annex</p>
+    <h2 class="section-title" data-i18n="anx_title">Driving <em>Experiences</em></h2>
+    <p class="annex-intro" data-i18n="anx_intro">Half-day track activities for guests who want to drive for real. They can be added to any circuit or booked on their own.</p>
+  </div>
+
+  <div class="annex-grid">
+
+    <!-- ANEXO 01 — CRESPI / SERIE SENNA & FC-1 (BALCARCE) -->
+    <div class="annex-card reveal">
+      <div class="annex-photo">
+        <!-- FOTO: subí una imagen llamada "anexo-crespi.jpg" a la carpeta fotos/ -->
+        <div class="annex-badge" data-i18n="anx_badge1">Add-on · Fangio Circuit</div>
+        <img src="fotos/anexo-crespi1.jpeg" alt="Serie Senna &amp; FC-1 — Autódromo Juan Manuel Fangio, Balcarce" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="annex-photo-placeholder" style="display:none"><span>FC-1</span></div>
+      </div>
+      <div class="annex-body">
+        <div class="annex-tag" data-i18n="a1_tag">Balcarce · Autódromo Juan Manuel Fangio</div>
+        <div class="annex-name" data-i18n="a1_name">Senna Series<br>&amp; FC-1</div>
+        <div class="annex-sub" data-i18n="a1_sub">Drive the cars Ayrton Senna raced</div>
+        <ul class="annex-details">
+          <li data-i18n="a1_d1">Toleman TG184 — the Formula 1 Ayrton Senna raced</li>
+          <li data-i18n="a1_d2">Formula 3 and Formula Ford 2000 from the Senna Series</li>
+          <li data-i18n="a1_d3">3 cars · 3 laps of the circuit in each one</li>
+          <li data-i18n="a1_d4">Advanced level: FC-1 · 300 HP Turbo Berta · 250 km/h · sequential gearbox</li>
+        </ul>
+        <div class="annex-specs">
+          <span class="annex-spec" data-i18n="a1_s1">Half day</span>
+          <span class="annex-spec" data-i18n="a1_s2">5 to 10 drivers</span>
+          <span class="annex-spec" data-i18n="a1_s3">AAV insurance required</span>
+        </div>
+        <div class="annex-foot">
+          <div class="annex-meta" data-i18n="a1_meta">With Crespi · Autódromo Juan Manuel Fangio, Balcarce</div>
+          <p class="annex-note" data-i18n="a1_note">The FC-1 is for experienced drivers only · maximum 5 per group</p>
+          <p class="annex-note" data-i18n="a1_note2">Photo for illustration — other historic cars from the Crespi collection share the paddock. The cars you drive are the Senna Series cars and the FC-1.</p>
+          <a href="#contact" class="circuit-link" data-circuit="annex-crespi" data-i18n="a_ask">Ask about availability <span>&#x2192;</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANEXO 02 — ARIEL PACHO / PERFORMANCE DRIVING (BS AS / LA PLATA) -->
+    <div class="annex-card reveal">
+      <div class="annex-photo">
+        <!-- FOTO: subí una imagen llamada "anexo-pacho.jpg" a la carpeta fotos/ -->
+        <div class="annex-badge" data-i18n="anx_badge2">Add-on · Hand-Built Heritage</div>
+        <!-- foto vertical: object-position bajado para que el recorte muestre el auto y no el cielo -->
+        <img src="fotos/anexo-pacho.jpeg" alt="Performance Driving Experience con Ariel Pacho" loading="lazy"
+             style="object-position:center 45%"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="annex-photo-placeholder" style="display:none"><span>BMW</span></div>
+      </div>
+      <div class="annex-body">
+        <div class="annex-tag" data-i18n="a2_tag">Buenos Aires · Gálvez &amp; La Plata (Mouras) racetracks</div>
+        <div class="annex-name" data-i18n="a2_name">Performance<br>Driving</div>
+        <div class="annex-sub" data-i18n="a2_sub">Exclusive coaching with Ariel Pacho</div>
+        <ul class="annex-details">
+          <li data-i18n="a2_d1">BMW 535iM with Ariel Pacho on board throughout the session</li>
+          <li data-i18n="a2_d2">Emergency braking, corner technique and high-speed slalom</li>
+          <li data-i18n="a2_d3">3 hours: theory training + track practice</li>
+          <li data-i18n="a2_d4">Professional photo session and Torque &amp; Taste courtesy gift</li>
+        </ul>
+        <div class="annex-specs">
+          <span class="annex-spec" data-i18n="a2_s1">3 hours</span>
+          <span class="annex-spec" data-i18n="a2_s2">1 to 4 drivers</span>
+          <span class="annex-spec" data-i18n="a2_s3">Licence + travel insurance</span>
+        </div>
+        <div class="annex-foot">
+          <div class="annex-meta" data-i18n="a2_meta">With Ariel Pacho · Buenos Aires (Gálvez) / La Plata (Mouras)</div>
+          <p class="annex-note" data-i18n="a2_note">Porsche GT3 Cup Argentina champion · 118 races in Turismo Carretera · Also available with a Renault Sandero RS, on request</p>
+          <a href="#contact" class="circuit-link" data-circuit="annex-pacho" data-i18n="a_ask">Ask about availability <span>&#x2192;</span></a>
         </div>
       </div>
     </div>
@@ -658,6 +778,8 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
           <option value="fangio" data-i18n="opt_fangio">The Fangio Circuit</option>
           <option value="mendoza">Wine &amp; Wheels — Mendoza</option>
           <option value="bsas-heritage" data-i18n="opt_new">Hand-Built Heritage</option>
+          <option value="annex-crespi" data-i18n="opt_anx_crespi">Annex — Senna Series &amp; FC-1 (Balcarce)</option>
+          <option value="annex-pacho" data-i18n="opt_anx_pacho">Annex — Performance Driving (Ariel Pacho)</option>
           <option value="custom" data-i18n="opt_custom">Custom / Multiple</option>
         </select>
       </div>
@@ -694,6 +816,7 @@ footer{padding:3rem 4rem;border-top:0.5px solid var(--border);display:flex;align
   <div class="footer-links">
     <a href="#experiences" data-i18n="nav_exp">Experiences</a>
     <a href="#circuits" data-i18n="nav_cir">Circuits</a>
+    <a href="#annex" data-i18n="nav_anx">Annex</a>
     <a href="#gallery" data-i18n="nav_gal">Gallery</a>
     <a href="#legacy" data-i18n="nav_leg">Legacy</a>
     <a href="#contact" data-i18n="nav_con">Contact</a>
@@ -778,7 +901,8 @@ const I18N = {
     c1_d2:`Visita guiada a la colección histórica`,
     c1_d3:`Crespi Competición — fábrica de partes de carrera en vivo`,
     c1_d4:`Vista al Autódromo Juan Manuel Fangio`,
-    c1_d6:`Visita a Bodegas y Viñedos Balcarce. Degustación de vinos y empanadas`,
+    c1_d6:`Visita a Bodega Costa y Pampa de Trapiche en Mar del Plata`,
+    c1_d7:`Hotelería 5 estrellas en Mar del Plata`,
     c1_dur:`2 días · 1 noche · Sale de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Autos clásicos por Ruta 60 y Ruta 7, entre viñedos`,
@@ -796,6 +920,36 @@ const I18N = {
     c3_d4:`Visita a museo guiada por Lean — Museo del ACA / Museo del Automóvil, según el día`,
     c3_d5:`Traslado privado todo el día, regalo de bienvenida T&amp;T`,
     c3_dur:`1 Día · Lunes a Sábado · Sale de Buenos Aires`,
+    c1_addon:`Add-on disponible: Serie Senna &amp; FC-1 en Balcarce <span>&#x2192;</span>`,
+    c3_addon:`Add-on disponible: Performance Driving con Ariel Pacho <span>&#x2192;</span>`,
+    nav_anx:`Anexo`,
+    anx_eyebrow:`Anexo`, anx_title:`Driving <em>Experiences</em>`,
+    anx_intro:`Actividades de medio día para quienes quieren manejar en serio. Se suman a cualquiera de los circuitos o se reservan por separado.`,
+    anx_badge1:`Add-on · Circuito Fangio`, anx_badge2:`Add-on · Hand-Built Heritage`,
+    a_ask:`Consultar disponibilidad <span>&#x2192;</span>`,
+    a1_tag:`Balcarce · Autódromo Juan Manuel Fangio`,
+    a1_name:`Serie Senna<br>&amp; FC-1`,
+    a1_sub:`Manejá los autos que corrió Ayrton Senna`,
+    a1_d1:`Toleman TG184 — el Fórmula 1 que corrió Ayrton Senna`,
+    a1_d2:`Fórmula 3 y Fórmula Ford 2000 de la Serie Senna`,
+    a1_d3:`3 autos · 3 vueltas al circuito con cada uno`,
+    a1_d4:`Nivel avanzado: FC-1 · 300 HP Turbo Berta · 250 km/h · caja secuencial`,
+    a1_s1:`Medio día`, a1_s2:`5 a 10 pilotos`, a1_s3:`Seguro AAV obligatorio`,
+    a1_meta:`Con Crespi · Autódromo Juan Manuel Fangio, Balcarce`,
+    a1_note:`El FC-1 es solo para pilotos experimentados · grupo máximo 5`,
+    a1_note2:`Foto ilustrativa — en el autódromo conviven otros autos históricos de la colección Crespi. Los autos a manejar son los de la Serie Senna y el FC-1.`,
+    a2_tag:`Buenos Aires · Autódromos Gálvez y La Plata (Mouras)`,
+    a2_name:`Performance<br>Driving`,
+    a2_sub:`Coaching exclusivo con Ariel Pacho`,
+    a2_d1:`BMW 535iM con Ariel Pacho a bordo durante toda la sesión`,
+    a2_d2:`Frenada de emergencia, técnica de curva y slalom de alta velocidad`,
+    a2_d3:`3 horas: entrenamiento teórico + práctica en pista`,
+    a2_d4:`Sesión fotográfica profesional y gift de cortesía Torque &amp; Taste`,
+    a2_s1:`3 horas`, a2_s2:`1 a 4 pilotos`, a2_s3:`Registro + seguro de viajero`,
+    a2_meta:`Con Ariel Pacho · Buenos Aires (Gálvez) / La Plata (Mouras)`,
+    a2_note:`Campeón Porsche GT3 Cup Argentina · 118 carreras en Turismo Carretera · También disponible con Renault Sandero RS, a consultar`,
+    opt_anx_crespi:`Anexo — Serie Senna &amp; FC-1 (Balcarce)`,
+    opt_anx_pacho:`Anexo — Performance Driving (Ariel Pacho)`,
     gal_eyebrow:`Momentos`, gal_title:`Desde el <em>camino</em>.`,
     gal_loading:`Cargando fotos…`, gal_empty:`Pronto sumaremos más fotos.`,
     gal_error:`No se pudieron cargar las fotos en este momento. Probá recargar la página en un rato.`,
@@ -853,7 +1007,8 @@ const I18N = {
     c1_d2:`Visita guiada à coleção histórica`,
     c1_d3:`Crespi Competición — fábrica de peças de corrida ao vivo`,
     c1_d4:`Visita ao Autódromo Juan Manuel Fangio`,
-    c1_d6:`Visita à Bodegas y Viñedos Balcarce. Degustação de vinhos e empanadas`,
+    c1_d6:`Visita à Bodega Costa y Pampa, da Trapiche, em Mar del Plata`,
+    c1_d7:`Hotelaria 5 estrelas em Mar del Plata`,
     c1_dur:`2 dias · 1 noite · Saída de Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Carros clássicos pela Ruta 60 e Ruta 7, entre vinhedos`,
@@ -871,6 +1026,36 @@ const I18N = {
     c3_d4:`Visita ao museu guiada por Lean — Museo del ACA / Museo del Automóvil, conforme o dia`,
     c3_d5:`Traslado privado o dia todo, presente de boas-vindas T&amp;T`,
     c3_dur:`1 Dia · Segunda a Sábado · Saída de Buenos Aires`,
+    c1_addon:`Add-on disponível: Série Senna &amp; FC-1 em Balcarce <span>&#x2192;</span>`,
+    c3_addon:`Add-on disponível: Performance Driving com Ariel Pacho <span>&#x2192;</span>`,
+    nav_anx:`Anexo`,
+    anx_eyebrow:`Anexo`, anx_title:`Driving <em>Experiences</em>`,
+    anx_intro:`Atividades de meio período para quem quer dirigir de verdade. Podem ser somadas a qualquer circuito ou reservadas separadamente.`,
+    anx_badge1:`Add-on · Circuito Fangio`, anx_badge2:`Add-on · Hand-Built Heritage`,
+    a_ask:`Consultar disponibilidade <span>&#x2192;</span>`,
+    a1_tag:`Balcarce · Autódromo Juan Manuel Fangio`,
+    a1_name:`Série Senna<br>&amp; FC-1`,
+    a1_sub:`Dirija os carros que Ayrton Senna pilotou`,
+    a1_d1:`Toleman TG184 — o Fórmula 1 pilotado por Ayrton Senna`,
+    a1_d2:`Fórmula 3 e Fórmula Ford 2000 da Série Senna`,
+    a1_d3:`3 carros · 3 voltas no circuito com cada um`,
+    a1_d4:`Nível avançado: FC-1 · 300 HP Turbo Berta · 250 km/h · câmbio sequencial`,
+    a1_s1:`Meio período`, a1_s2:`5 a 10 pilotos`, a1_s3:`Seguro AAV obrigatório`,
+    a1_meta:`Com Crespi · Autódromo Juan Manuel Fangio, Balcarce`,
+    a1_note:`O FC-1 é apenas para pilotos experientes · grupo máximo de 5`,
+    a1_note2:`Foto ilustrativa — no autódromo convivem outros carros históricos da coleção Crespi. Os carros a dirigir são os da Série Senna e o FC-1.`,
+    a2_tag:`Buenos Aires · Autódromos Gálvez e La Plata (Mouras)`,
+    a2_name:`Performance<br>Driving`,
+    a2_sub:`Coaching exclusivo com Ariel Pacho`,
+    a2_d1:`BMW 535iM com Ariel Pacho a bordo durante toda a sessão`,
+    a2_d2:`Frenagem de emergência, técnica de curva e slalom de alta velocidade`,
+    a2_d3:`3 horas: treinamento teórico + prática na pista`,
+    a2_d4:`Sessão fotográfica profissional e gift de cortesia Torque &amp; Taste`,
+    a2_s1:`3 horas`, a2_s2:`1 a 4 pilotos`, a2_s3:`Habilitação + seguro viagem`,
+    a2_meta:`Com Ariel Pacho · Buenos Aires (Gálvez) / La Plata (Mouras)`,
+    a2_note:`Campeão da Porsche GT3 Cup Argentina · 118 corridas no Turismo Carretera · Também disponível com Renault Sandero RS, sob consulta`,
+    opt_anx_crespi:`Anexo — Série Senna &amp; FC-1 (Balcarce)`,
+    opt_anx_pacho:`Anexo — Performance Driving (Ariel Pacho)`,
     gal_eyebrow:`Momentos`, gal_title:`Da <em>estrada</em>.`,
     gal_loading:`Carregando fotos…`, gal_empty:`Em breve mais fotos.`,
     gal_error:`Não foi possível carregar as fotos agora. Tente recarregar a página em instantes.`,
@@ -928,7 +1113,8 @@ const I18N = {
     c1_d2:`Guided tour of the historic collection`,
     c1_d3:`Crespi Competición — live racing parts factory`,
     c1_d4:`Visit to the Autódromo Juan Manuel Fangio`,
-    c1_d6:`Visit to Bodegas y Viñedos Balcarce. Wine and empanadas tasting`,
+    c1_d6:`Visit to Bodega Costa y Pampa (Trapiche) in Mar del Plata`,
+    c1_d7:`5-star hotel in Mar del Plata`,
     c1_dur:`2 Days · 1 Night · Departs Buenos Aires`,
     c2_tag:`Mendoza · Cuyo`, c2_name:`Wine &amp; Wheels Mendoza`,
     c2_d1:`Classic cars along Rutas 60 & 7, through the vineyards`,
@@ -946,6 +1132,36 @@ const I18N = {
     c3_d4:`Museum visit guided by Lean — Museo del ACA / Museo del Automóvil, depending on day`,
     c3_d5:`Private transfer all day, T&amp;T welcome gift`,
     c3_dur:`1 Day · Monday–Saturday · Departs Buenos Aires`,
+    c1_addon:`Add-on available: Senna Series &amp; FC-1 at Balcarce <span>&#x2192;</span>`,
+    c3_addon:`Add-on available: Performance Driving with Ariel Pacho <span>&#x2192;</span>`,
+    nav_anx:`Annex`,
+    anx_eyebrow:`Annex`, anx_title:`Driving <em>Experiences</em>`,
+    anx_intro:`Half-day track activities for guests who want to drive for real. They can be added to any circuit or booked on their own.`,
+    anx_badge1:`Add-on · Fangio Circuit`, anx_badge2:`Add-on · Hand-Built Heritage`,
+    a_ask:`Ask about availability <span>&#x2192;</span>`,
+    a1_tag:`Balcarce · Autódromo Juan Manuel Fangio`,
+    a1_name:`Senna Series<br>&amp; FC-1`,
+    a1_sub:`Drive the cars Ayrton Senna raced`,
+    a1_d1:`Toleman TG184 — the Formula 1 car Ayrton Senna raced`,
+    a1_d2:`Formula 3 and Formula Ford 2000 from the Senna Series`,
+    a1_d3:`3 cars · 3 laps of the circuit in each one`,
+    a1_d4:`Advanced level: FC-1 · 300 HP Turbo Berta · 250 km/h · sequential gearbox`,
+    a1_s1:`Half day`, a1_s2:`5 to 10 drivers`, a1_s3:`AAV insurance required`,
+    a1_meta:`With Crespi · Autódromo Juan Manuel Fangio, Balcarce`,
+    a1_note:`The FC-1 is for experienced drivers only · maximum 5 per group`,
+    a1_note2:`Photo for illustration — other historic cars from the Crespi collection share the paddock. The cars you drive are the Senna Series cars and the FC-1.`,
+    a2_tag:`Buenos Aires · Gálvez &amp; La Plata (Mouras) racetracks`,
+    a2_name:`Performance<br>Driving`,
+    a2_sub:`Exclusive coaching with Ariel Pacho`,
+    a2_d1:`BMW 535iM with Ariel Pacho on board throughout the session`,
+    a2_d2:`Emergency braking, corner technique and high-speed slalom`,
+    a2_d3:`3 hours: theory training + track practice`,
+    a2_d4:`Professional photo session and Torque &amp; Taste courtesy gift`,
+    a2_s1:`3 hours`, a2_s2:`1 to 4 drivers`, a2_s3:`Licence + travel insurance`,
+    a2_meta:`With Ariel Pacho · Buenos Aires (Gálvez) / La Plata (Mouras)`,
+    a2_note:`Porsche GT3 Cup Argentina champion · 118 races in Turismo Carretera · Also available with a Renault Sandero RS, on request`,
+    opt_anx_crespi:`Annex — Senna Series &amp; FC-1 (Balcarce)`,
+    opt_anx_pacho:`Annex — Performance Driving (Ariel Pacho)`,
     gal_eyebrow:`Moments`, gal_title:`From the <em>road</em>.`,
     gal_loading:`Loading photos…`, gal_empty:`More photos coming soon.`,
     gal_error:`Couldn't load the photos right now. Please reload the page in a bit.`,
@@ -1029,11 +1245,17 @@ applyLang(detectLang());
   // Convierte el nombre del archivo en un título legible:
   // "01_museo-fangio_w196.jpg" -> "Museo Fangio W196"
   function tituloDesdeNombre(name){
+    // palabras de enlace que quedan en minúscula (salvo que abran el título)
+    var MINUS = ['y','e','o','u','de','del','la','las','el','los','en','a','al','con','sin','por','para','da','do','das','dos','and','of','the','in','at','on'];
     return name.replace(/\.[^.]+$/, '')
-               .replace(/^\d+[\s._-]+/, '')
+               .replace(/^\d+[\s._-]+/, '')      // prefijo de orden: "01_" -> ""
+               .replace(/([a-zA-Z]{3,})\d{1,2}$/, '$1')  // sufijo de duplicado: "pampa2" -> "pampa" (no toca "w196" ni "toyota-99")
                .replace(/[._-]+/g, ' ')
                .trim()
-               .replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+               .replace(/\b\w/g, function(c){ return c.toUpperCase(); })
+               .replace(/\s\w+/g, function(w){
+                 return MINUS.indexOf(w.trim().toLowerCase()) > -1 ? w.toLowerCase() : w;
+               });
   }
 
   async function obtenerLista(){
